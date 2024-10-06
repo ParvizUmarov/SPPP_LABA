@@ -1,0 +1,853 @@
+=== File: LanguageServiceImplTest.java ===
+package org.example;
+
+import org.example.bot.LanguageService;
+import org.example.service.LanguageServiceImpl;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.mockito.Mockito;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.Mockito.when;
+
+public class LanguageServiceImplTest {
+
+    private LanguageService languageService;
+
+    @BeforeEach
+    void setUp() {
+        languageService = Mockito.mock(LanguageService.class);
+    }
+
+    @Test
+    void testLang() {
+        when(languageService.getCurrentLanguage()).thenReturn("ru");
+        var actual = languageService.getCurrentLanguage();
+        assertEquals("ru", actual);
+    }
+
+}
+
+
+=== File: I18nServiceImplTest.java ===
+package org.example;
+
+import org.example.bot.LanguageService;
+import org.example.bot.LoggerConsole;
+import org.example.service.I18nServiceImpl;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.mockito.Mockito;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.Mockito.when;
+
+class I18nServiceImplTest {
+
+    private I18nServiceImpl i18nService;
+    private LoggerConsole logger;
+    private LanguageService languageService;
+
+    @BeforeEach
+    void setUp() {
+        logger = Mockito.mock(LoggerConsole.class);
+        languageService = Mockito.mock(LanguageService.class);
+        i18nService = new I18nServiceImpl(logger, languageService);
+    }
+
+    @Test
+    void testGetMessageWithoutParams() {
+        when(languageService.getCurrentLanguage()).thenReturn("ru");
+        String message = i18nService.getMessage("enter-barber-name");
+        assertEquals("Введите название барбера: ", message);
+    }
+
+}
+
+
+=== File: ClassInfoWriter.java ===
+package writer;
+
+import java.io.*;
+import java.nio.file.*;
+import java.util.List;
+
+public class ClassInfoWriter {
+
+    public static void main(String[] args) {
+        // Укажите путь к директории с исходными кодами Java
+        String sourceDirPath = "src";
+        // Укажите путь к итоговому файлу, куда будет записано содержимое всех классов
+        String outputFilePath = "class_info.txt";
+
+        try {
+            // Создаем writer для записи в выходной файл
+            BufferedWriter writer = new BufferedWriter(new FileWriter(outputFilePath));
+
+            // Рекурсивно проходим по директории и обрабатываем все файлы .java
+            Files.walk(Paths.get(sourceDirPath))
+                    .filter(Files::isRegularFile)
+                    .filter(path -> path.toString().endsWith(".java"))
+                    .forEach(path -> {
+                        try {
+                            // Читаем содержимое каждого .java файла
+                            List<String> fileContent = Files.readAllLines(path);
+                            writer.write("=== File: " + path.getFileName() + " ===\n");
+                            for (String line : fileContent) {
+                                writer.write(line + "\n");
+                            }
+                            writer.write("\n\n"); // Отделяем файлы пустыми строками
+                        } catch (IOException e) {
+                            System.err.println("Error reading file: " + path);
+                        }
+                    });
+
+            // Закрываем writer после завершения
+            writer.close();
+            System.out.println("All Java class files have been aggregated into " + outputFilePath);
+        } catch (IOException e) {
+            System.err.println("Error processing files: " + e.getMessage());
+        }
+    }
+}
+
+
+=== File: LanguageServiceImpl.java ===
+package org.example.service;
+
+import org.example.bot.LanguageService;
+import org.springframework.stereotype.Service;
+
+import java.util.Collection;
+import java.util.Set;
+
+public class LanguageServiceImpl implements LanguageService {
+    private static final Collection<String> supportedLanguages = Set.of("ru", "en");
+
+    private String currentLanguage = "ru";
+
+    @Override
+    public String getCurrentLanguage() {
+        return currentLanguage;
+    }
+
+    @Override
+    public void setCurrentLanguage(String language) {
+        language = language.strip().toLowerCase();
+        if ( ! supportedLanguages.contains(language))
+            throw new IllegalArgumentException("Not supported language: " + language);
+        currentLanguage = language;
+    }
+}
+
+
+=== File: Log4j2ConsoleAndFile.java ===
+package org.example.service;
+
+import org.apache.logging.log4j.Level;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import org.example.bot.LoggerConsole;
+import org.springframework.stereotype.Service;
+
+public class Log4j2ConsoleAndFile implements LoggerConsole {
+
+    private static final Logger logger = LogManager.getLogger(Log4j2ConsoleAndFile.class);
+
+    @Override
+    public void logINFO(String message) {
+        logger.log(Level.INFO, message);
+    }
+
+    @Override
+    public void logERROR(String message) {
+        logger.log(Level.ERROR, message);
+    }
+
+}
+
+
+=== File: IOServiceImpl.java ===
+package org.example.service;
+
+import org.example.bot.IOService;
+import org.springframework.stereotype.Service;
+
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.io.PrintWriter;
+import java.util.Scanner;
+
+public class IOServiceImpl implements IOService {
+    private final Scanner scanner;
+    private final PrintWriter writer;
+
+    public IOServiceImpl(InputStream inputStream, OutputStream outputStream) {
+        this.scanner = new Scanner(inputStream);
+        this.writer = new PrintWriter(outputStream);
+    }
+
+    @Override
+    public void print(String str) {
+        writer.print(str);
+        writer.flush();
+    }
+
+    @Override
+    public void println(String str) {
+        writer.println(str);
+        writer.flush();
+    }
+
+    @Override
+    public String readLine() {
+        return scanner.nextLine();
+    }
+}
+
+
+=== File: I18nServiceImpl.java ===
+package org.example.service;
+
+import org.example.bot.I18nService;
+import org.example.bot.LanguageService;
+import org.example.bot.LoggerConsole;
+
+import java.util.Map;
+
+public class I18nServiceImpl implements I18nService {
+    private Map<String, String> phraseMap = Map.ofEntries(
+            Map.entry("ru#enter-barber-name", "Введите название барбера: "),
+            Map.entry("ru#command-not-found", "Команда не найдена. Попробуйте <help>"),
+            Map.entry("ru#find", "найти"),
+            Map.entry("ru#findAll", "найти всех"),
+            Map.entry("ru#help", "помощь"),
+            Map.entry("ru#helpCommand", "Все команды:\n-find <name>\n-find all\n-help"),
+            Map.entry("ru#no-info", "Нету информации"),
+            Map.entry("ru#welcome", "Добро пожаловать!"),
+            Map.entry("ru#name", "имя:"),
+            Map.entry("ru#surname", "фамилия:"),
+            Map.entry("ru#phone", "номер"),
+            Map.entry("ru#mail", "почта"),
+
+            Map.entry("en#help", "help"),
+            Map.entry("en#findAll", "find all"),
+            Map.entry("en#find", "find"),
+            Map.entry("en#enter-barber-name", "Enter barber name:"),
+            Map.entry("en#command-not-found", "Command not found. Try <help>"),
+            Map.entry("en#helpCommand", "All commands:\n-find <имя>\n-find all\n-help"),
+            Map.entry("en#no-info", "No information"),
+            Map.entry("en#name", "name:"),
+            Map.entry("en#surname", "surname"),
+            Map.entry("en#phone", "phone"),
+            Map.entry("en#mail", "mail")
+
+    );
+
+    private final LoggerConsole logger;
+    private final LanguageService languageService;
+
+    public I18nServiceImpl(LoggerConsole logger, LanguageService languageService) {
+        this.logger = logger;
+        this.languageService = languageService;
+    }
+
+    @Override
+    public String getMessage(String code) {
+        return getMessage(code, null);
+    }
+
+    @Override
+    public String getMessage(String code, Map<String, Object> params) {
+        logger.logINFO("lang: " + code + " - getMessage");
+        var language = languageService.getCurrentLanguage();
+        var key = language + "#" + code;
+        var phrase = phraseMap.get(key);
+        if (params != null)
+            phrase = handlePlaceholders(phrase, params);
+        return phrase;
+    }
+
+    private String handlePlaceholders(String phrase, Map<String, Object> params) {
+        for (var e : params.entrySet())
+            phrase = phrase.replace("%" + e.getKey() + "%", e.getValue().toString());
+        return phrase;
+    }
+}
+
+
+=== File: LoggerConsole.java ===
+package org.example.bot;
+
+public interface LoggerConsole {
+
+    void logINFO(String message);
+    void logERROR(String message);
+}
+
+
+=== File: LanguageService.java ===
+package org.example.bot;
+
+public interface LanguageService {
+    String getCurrentLanguage();
+    void setCurrentLanguage(String language);
+}
+
+
+=== File: I18nService.java ===
+package org.example.bot;
+
+import java.util.Map;
+
+public interface I18nService {
+    String getMessage(String code);
+    String getMessage(String code, Map<String, Object> params);
+}
+
+
+=== File: IOService.java ===
+package org.example.bot;
+
+public interface IOService {
+    void print(String str);
+    void println(String str);
+    String readLine();
+}
+
+
+=== File: BarberShopBot.java ===
+package org.example.bot;
+
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+import org.example.config.SpringConfig;
+import org.example.repository.BarbershopRepository;
+import org.springframework.stereotype.Service;
+
+@Service("bot")
+public class BarberShopBot {
+    private static final Log log = LogFactory.getLog(BarberShopBot.class);
+    private final I18nService i18nService;
+    private final IOService ioService;
+    private final LanguageService languageService;
+    private final BarbershopRepository repository;
+    private final LoggerConsole logger;
+
+    public BarberShopBot(I18nService i18nService,
+                         IOService ioService,
+                         LanguageService languageService,
+                         BarbershopRepository repository, LoggerConsole logger) {
+        this.ioService = ioService;
+        this.i18nService = i18nService;
+        this.languageService = languageService;
+        this.repository = repository;
+        this.logger = logger;
+    }
+
+    public void conversation() {
+        selectLanguage();
+        String userInput;
+        do {
+            ioService.print("> ");
+            userInput = ioService.readLine().strip().toLowerCase();
+            try {
+                if (userInput.equals("find-all")) {
+                    findAll();
+                } else if (userInput.contains("find")) {
+                    findByArg(userInput);
+                } else if (userInput.equals("help")) {
+                    help();
+                } else if(userInput.contains("lang")){
+                   checkLang(userInput);
+                } else {
+                    unrecognizedCommand(userInput);
+                }
+            } catch (Exception e) {
+                ioService.print("Error: " + e.getMessage());
+            }
+
+        } while (!"exit".equals(userInput));
+    }
+
+    private void checkLang(String userInput){
+        try{
+            var list = userInput.split(" ");
+            var language = list[1];
+            languageService.setCurrentLanguage(language);
+            ioService.println(languageService.getCurrentLanguage());
+        }catch (Exception e){
+            logger.logERROR(e.toString());
+            ioService.println("Selected default language");
+        }
+    }
+
+    private void selectLanguage() {
+        try{
+            ioService.print("Select language(ru/en): ");
+            var language = ioService.readLine();
+            languageService.setCurrentLanguage(language);
+            ioService.println(i18nService.getMessage("welcome"));
+        }catch (Exception e){
+            logger.logERROR(e.toString());
+            ioService.println("Selected default language");
+        }
+    }
+
+    private void findAll() {
+        try {
+            var result = repository.getAllBarber();
+            ioService.println(result);
+        } catch (Exception e) {
+            logger.logERROR(e.toString());
+            ioService.println(e.toString());
+        }
+    }
+
+    private void help() {
+        ioService.println(i18nService.getMessage("helpCommand"));
+    }
+
+    private void findByArg(String userInput) {
+        try {
+            var list = userInput.split(" ");
+            var name = list[1];
+            var result = repository.getUserByName(name);
+            ioService.println(result.isEmpty() ? i18nService.getMessage("no-info") : result);
+        } catch (Exception e) {
+            logger.logERROR(e.toString());
+            ioService.println(e.toString());
+        }
+    }
+
+    private void unrecognizedCommand(String unregMessage) {
+        ioService.println(unregMessage + ": " + i18nService.getMessage("command-not-found"));
+    }
+}
+
+
+=== File: Main.java ===
+package org.example;
+
+import org.example.bot.BarberShopBot;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.context.annotation.ComponentScan;
+
+@ComponentScan
+public class Main {
+    public static void main(String[] args) {
+        System.setProperty("log4j.configurationFile", "src/main/resources/log4j.properties");
+        new AnnotationConfigApplicationContext(Main.class)
+                .getBean("bot", BarberShopBot.class)
+                .conversation();
+    }
+}
+
+
+=== File: MainConfig.java ===
+package org.example.config;
+
+import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.PropertySource;
+
+@Configuration
+@PropertySource("classpath:application.properties")
+public class MainConfig {
+}
+
+
+=== File: DataSourceConfig.java ===
+package org.example.config;
+
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.datasource.DriverManagerDataSource;
+
+import javax.sql.DataSource;
+
+@Configuration
+public class DataSourceConfig {
+
+    @Bean
+    public SpringConfig config () {
+        return new SpringConfig();
+    }
+
+    @Bean
+    public DataSource dataSource(SpringConfig config) {
+        DriverManagerDataSource dataSource = new DriverManagerDataSource();
+        dataSource.setDriverClassName(config.getDriver());
+        dataSource.setUrl(config.getUrl());
+        dataSource.setUsername(config.getUserName());
+        dataSource.setPassword(config.getPassword());
+        return dataSource;
+    }
+
+    @Bean
+    public JdbcTemplate jdbcTemplate(DataSource dataSource) {
+        return new JdbcTemplate(dataSource);
+    }
+
+}
+
+
+=== File: AppConfig.java ===
+package org.example.config;
+
+import org.example.bot.*;
+import org.example.repository.BarbershopRepository;
+import org.example.service.I18nServiceImpl;
+import org.example.service.IOServiceImpl;
+import org.example.service.LanguageServiceImpl;
+import org.example.service.Log4j2ConsoleAndFile;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+
+@Configuration
+public class AppConfig {
+
+    @Bean
+    public IOService ioService() {
+        return new IOServiceImpl(System.in, System.out);
+    }
+
+    @Bean
+    public LanguageService languageService() {
+        return new LanguageServiceImpl();
+    }
+
+    @Bean
+    public LoggerConsole logger(){
+        return new Log4j2ConsoleAndFile();
+    }
+
+    @Bean
+    public I18nService i18nService() {
+        return new I18nServiceImpl(logger(), languageService());
+    }
+
+    @Bean(name = "bot")
+    public BarberShopBot motivatingBot(BarbershopRepository barberShopRepository) {
+        return new BarberShopBot(i18nService(), ioService(), languageService(), barberShopRepository, logger());
+    }
+
+}
+
+
+=== File: IOConfig.java ===
+package org.example.config;
+
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+
+import java.io.InputStream;
+import java.io.OutputStream;
+
+@Configuration
+public class IOConfig {
+    @Bean
+    InputStream inputStream() {
+        return System.in;
+    }
+
+    @Bean
+    OutputStream outputStream() {
+        return System.out;
+    }
+}
+
+
+=== File: SpringConfig.java ===
+package org.example.config;
+
+import lombok.Getter;
+import lombok.ToString;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.PropertySource;
+import org.springframework.stereotype.Component;
+
+@Getter
+@ToString
+@Configuration
+@PropertySource("classpath:application.properties")
+public class SpringConfig {
+
+    @Value("${spring.datasource.url}")
+    private String url;
+
+    @Value("${spring.datasource.username}")
+    private String userName;
+
+    @Value("${spring.datasource.password}")
+    private String password;
+
+    @Value("${spring.datasource.driver-class-name}")
+    private String driver;
+}
+
+
+=== File: OrderDto.java ===
+package org.example.dto;
+
+import lombok.Data;
+
+import java.sql.Timestamp;
+
+@Data
+public class OrderDto {
+    private Integer id;
+    private Integer customerId;
+    private Integer barberId;
+    private String status;
+    private Timestamp time;
+    private int grade;
+    private Integer serviceId;
+}
+
+
+=== File: ServiceDto.java ===
+package org.example.dto;
+
+import lombok.Data;
+
+@Data
+public class ServiceDto {
+    private Integer id;
+    private String name;
+    private Integer price;
+}
+
+
+=== File: SalonDto.java ===
+package org.example.dto;
+
+import lombok.Data;
+
+@Data
+public class SalonDto {
+    private Integer id;
+    private String address;
+    private String images;
+    private String longitude;
+    private String latitude;
+
+}
+
+
+=== File: MessageDto.java ===
+package org.example.dto;
+
+import lombok.Data;
+
+import java.sql.Timestamp;
+
+@Data
+public class MessageDto {
+    private Integer id;
+    private Integer chatId;
+    private String message;
+    private Timestamp time;
+}
+
+
+=== File: OrderInfoDto.java ===
+package org.example.dto;
+
+import lombok.Data;
+
+import java.sql.Timestamp;
+
+@Data
+public class OrderInfoDto {
+    private int id;
+    private int barberId;
+    private String barberName;
+    private String barberPhone;
+    private int customerId;
+    private String customerName;
+    private String customerPhone;
+    private String status;
+    private Timestamp time;
+    private int grade;
+    private int serviceId;
+    private String serviceName;
+    private int servicePrice;
+}
+
+
+=== File: BarberDto.java ===
+package org.example.dto;
+
+import lombok.Data;
+
+@Data
+public class BarberDto {
+    private Integer id;
+    private String name;
+    private String surname;
+    private String birthday;
+    private String phone;
+    private String mail;
+    private String password;
+    private Boolean authState;
+    private Integer workExperience;
+    private String token;
+    private Integer salonId;
+    private String salonAddress;
+    private String salonImages;
+    private Integer serviceId;
+    private String serviceName;
+    private Integer servicePrice;
+
+
+    @Override
+    public String toString() {
+        return "Barber info:" +
+                "\n id=" + id +
+                "\n name='" + name + '\'' +
+                "\n surname='" + surname + '\'' +
+                "\n birthday='" + birthday + '\'' +
+                "\n phone='" + phone + '\'' +
+                "\n mail='" + mail + '\'' +
+                "\n password='" + password + '\'' +
+                "\n authState=" + authState +
+                "\n workExperience=" + workExperience +
+                "\n token='" + token + '\'' +
+                "\n salonId=" + salonId +
+                "\n salonAddress='" + salonAddress + '\'' +
+                "\n salonImages='" + salonImages + '\'' +
+                "\n serviceId=" + serviceId +
+                "\n serviceName='" + serviceName + '\'' +
+                "\n servicePrice=" + servicePrice;
+    }
+}
+
+
+=== File: CustomerDto.java ===
+package org.example.dto;
+
+import lombok.Data;
+
+@Data
+public class CustomerDto {
+    private Integer id;
+    private String name;
+    private String surname;
+    private String birthday;
+    private String phone;
+    private String mail;
+    private String password;
+    private Boolean authState;
+    private String token;
+
+}
+
+
+=== File: StoresDto.java ===
+package org.example.dto;
+
+import lombok.Data;
+
+import java.sql.Timestamp;
+
+@Data
+public class StoresDto {
+    private Integer id;
+    private Integer barberId;
+    private String image;
+    private Timestamp time;
+}
+
+
+=== File: ChatDto.java ===
+package org.example.dto;
+
+import lombok.Data;
+import lombok.ToString;
+
+@ToString
+@Data
+public class ChatDto {
+    private Integer id;
+    private Integer barberId;
+    private Integer customerId;
+
+}
+
+
+=== File: TokenDto.java ===
+package org.example.dto;
+
+import lombok.Data;
+
+@Data
+public class TokenDto {
+    private int uid;
+    private String mail;
+    private String token;
+}
+
+
+=== File: BarbershopRepository.java ===
+package org.example.repository;
+
+import org.example.bot.I18nService;
+import org.example.bot.LoggerConsole;
+import org.example.dto.BarberDto;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.stereotype.Repository;
+
+@Repository
+public class BarbershopRepository {
+
+    private final JdbcTemplate jdbcTemplate;
+    private final I18nService i18n;
+    private final LoggerConsole logger;
+
+    @Autowired
+    public BarbershopRepository(JdbcTemplate jdbcTemplate, I18nService i18n, LoggerConsole logger) {
+        this.jdbcTemplate = jdbcTemplate;
+        this.i18n = i18n;
+        this.logger = logger;
+    }
+
+    public String getUserByName(String name) {
+        String sql = "SELECT * FROM barber WHERE name = ?";
+        var result = jdbcTemplate.query(sql, new Object[]{name}, new BeanPropertyRowMapper<>(BarberDto.class));
+        StringBuilder sb = new StringBuilder();
+
+        for (BarberDto barber : result) {
+            sb = dtoToString(barber);
+        }
+
+        logger.logINFO("repository: " + sql);
+
+        return sb.toString();
+    }
+
+    public String getAllBarber() {
+        String sql = "SELECT * FROM barber LIMIT 10";
+        var result = jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(BarberDto.class));
+
+        StringBuilder sb = new StringBuilder();
+        for (BarberDto barber : result) {
+            sb.append(dtoToString(barber)).append("\n\n");
+        }
+        logger.logINFO("repository: " + sql);
+        return sb.toString();
+    }
+
+    StringBuilder dtoToString(BarberDto barber){
+        StringBuilder sb = new StringBuilder();
+        return sb.append(i18n.getMessage("name")).append(" ").append(barber.getName()).append("\n")
+                .append(i18n.getMessage("surname")).append(" ").append(barber.getSurname()).append("\n")
+                .append(i18n.getMessage("phone")).append(" ").append(barber.getPhone()).append("\n")
+                .append(i18n.getMessage("mail")).append(" ").append(barber.getMail());
+    }
+}
+
+

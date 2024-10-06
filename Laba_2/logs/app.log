@@ -1,0 +1,47 @@
+2024-10-06 13:35:22 DEBUG AnnotationConfigApplicationContext:654 - Refreshing org.springframework.context.annotation.AnnotationConfigApplicationContext@3c947bc5
+2024-10-06 13:35:22 DEBUG DefaultListableBeanFactory:225 - Creating shared instance of singleton bean 'org.springframework.context.annotation.internalConfigurationAnnotationProcessor'
+2024-10-06 13:35:22 DEBUG ClassPathBeanDefinitionScanner:441 - Identified candidate component class: file [/home/parviz/Main/Univer/СППП/Лабы/Laba_2/build/classes/java/main/org/example/bot/BarberShopBot.class]
+2024-10-06 13:35:22 DEBUG ClassPathBeanDefinitionScanner:441 - Identified candidate component class: file [/home/parviz/Main/Univer/СППП/Лабы/Laba_2/build/classes/java/main/org/example/config/AppConfig.class]
+2024-10-06 13:35:22 DEBUG ClassPathBeanDefinitionScanner:441 - Identified candidate component class: file [/home/parviz/Main/Univer/СППП/Лабы/Laba_2/build/classes/java/main/org/example/config/DataSourceConfig.class]
+2024-10-06 13:35:22 DEBUG ClassPathBeanDefinitionScanner:441 - Identified candidate component class: file [/home/parviz/Main/Univer/СППП/Лабы/Laba_2/build/classes/java/main/org/example/config/IOConfig.class]
+2024-10-06 13:35:22 DEBUG ClassPathBeanDefinitionScanner:441 - Identified candidate component class: file [/home/parviz/Main/Univer/СППП/Лабы/Laba_2/build/classes/java/main/org/example/config/MainConfig.class]
+2024-10-06 13:35:22 DEBUG ClassPathBeanDefinitionScanner:441 - Identified candidate component class: file [/home/parviz/Main/Univer/СППП/Лабы/Laba_2/build/classes/java/main/org/example/config/SpringConfig.class]
+2024-10-06 13:35:22 DEBUG ClassPathBeanDefinitionScanner:441 - Identified candidate component class: file [/home/parviz/Main/Univer/СППП/Лабы/Laba_2/build/classes/java/main/org/example/repository/BarbershopRepository.class]
+2024-10-06 13:35:22 DEBUG DefaultListableBeanFactory:1027 - Overriding bean definition for bean 'bot' with a different definition: replacing [Generic bean: class [org.example.bot.BarberShopBot]; scope=singleton; abstract=false; lazyInit=null; autowireMode=0; dependencyCheck=0; autowireCandidate=true; primary=false; factoryBeanName=null; factoryMethodName=null; initMethodNames=null; destroyMethodNames=null; defined in file [/home/parviz/Main/Univer/СППП/Лабы/Laba_2/build/classes/java/main/org/example/bot/BarberShopBot.class]] with [Root bean: class [null]; scope=; abstract=false; lazyInit=null; autowireMode=3; dependencyCheck=0; autowireCandidate=true; primary=false; factoryBeanName=appConfig; factoryMethodName=motivatingBot; initMethodNames=null; destroyMethodNames=[(inferred)]; defined in class path resource [org/example/config/AppConfig.class]]
+2024-10-06 13:35:22 DEBUG DefaultListableBeanFactory:225 - Creating shared instance of singleton bean 'org.springframework.context.event.internalEventListenerProcessor'
+2024-10-06 13:35:22 DEBUG DefaultListableBeanFactory:225 - Creating shared instance of singleton bean 'org.springframework.context.event.internalEventListenerFactory'
+2024-10-06 13:35:22 DEBUG DefaultListableBeanFactory:225 - Creating shared instance of singleton bean 'org.springframework.context.annotation.internalAutowiredAnnotationProcessor'
+2024-10-06 13:35:22 DEBUG DefaultListableBeanFactory:225 - Creating shared instance of singleton bean 'main'
+2024-10-06 13:35:22 DEBUG DefaultListableBeanFactory:225 - Creating shared instance of singleton bean 'bot'
+2024-10-06 13:35:22 DEBUG DefaultListableBeanFactory:225 - Creating shared instance of singleton bean 'appConfig'
+2024-10-06 13:35:22 DEBUG DefaultListableBeanFactory:225 - Creating shared instance of singleton bean 'barbershopRepository'
+2024-10-06 13:35:22 DEBUG DefaultListableBeanFactory:225 - Creating shared instance of singleton bean 'jdbcTemplate'
+2024-10-06 13:35:22 DEBUG DefaultListableBeanFactory:225 - Creating shared instance of singleton bean 'dataSourceConfig'
+2024-10-06 13:35:22 DEBUG DefaultListableBeanFactory:225 - Creating shared instance of singleton bean 'dataSource'
+2024-10-06 13:35:22 WARN  LocalVariableTableParameterNameDiscoverer:123 - Using deprecated '-debug' fallback for parameter name resolution. Compile the affected code with '-parameters' instead or avoid its introspection: org.example.config.DataSourceConfig
+2024-10-06 13:35:22 DEBUG DefaultListableBeanFactory:225 - Creating shared instance of singleton bean 'config'
+2024-10-06 13:35:22 DEBUG PropertySourcesPropertyResolver:115 - Found key 'spring.datasource.url' in PropertySource 'class path resource [application.properties]' with value of type String
+2024-10-06 13:35:22 DEBUG PropertySourcesPropertyResolver:115 - Found key 'spring.datasource.username' in PropertySource 'class path resource [application.properties]' with value of type String
+2024-10-06 13:35:22 DEBUG PropertySourcesPropertyResolver:115 - Found key 'spring.datasource.password' in PropertySource 'class path resource [application.properties]' with value of type String
+2024-10-06 13:35:22 DEBUG PropertySourcesPropertyResolver:115 - Found key 'spring.datasource.driver-class-name' in PropertySource 'class path resource [application.properties]' with value of type String
+2024-10-06 13:35:22 DEBUG DefaultListableBeanFactory:808 - Autowiring by type from bean name 'dataSource' via factory method to bean named 'config'
+2024-10-06 13:35:22 DEBUG DriverManagerDataSource:134 - Loaded JDBC driver: org.postgresql.Driver
+2024-10-06 13:35:22 DEBUG DefaultListableBeanFactory:808 - Autowiring by type from bean name 'jdbcTemplate' via factory method to bean named 'dataSource'
+2024-10-06 13:35:22 DEBUG DefaultListableBeanFactory:225 - Creating shared instance of singleton bean 'i18nService'
+2024-10-06 13:35:22 DEBUG DefaultListableBeanFactory:225 - Creating shared instance of singleton bean 'logger'
+2024-10-06 13:35:22 DEBUG DefaultListableBeanFactory:225 - Creating shared instance of singleton bean 'languageService'
+2024-10-06 13:35:22 DEBUG DefaultListableBeanFactory:808 - Autowiring by type from bean name 'barbershopRepository' via constructor to bean named 'jdbcTemplate'
+2024-10-06 13:35:22 DEBUG DefaultListableBeanFactory:808 - Autowiring by type from bean name 'barbershopRepository' via constructor to bean named 'i18nService'
+2024-10-06 13:35:22 DEBUG DefaultListableBeanFactory:808 - Autowiring by type from bean name 'barbershopRepository' via constructor to bean named 'logger'
+2024-10-06 13:35:22 DEBUG DefaultListableBeanFactory:808 - Autowiring by type from bean name 'bot' via factory method to bean named 'barbershopRepository'
+2024-10-06 13:35:22 DEBUG DefaultListableBeanFactory:225 - Creating shared instance of singleton bean 'ioService'
+2024-10-06 13:35:22 DEBUG DefaultListableBeanFactory:225 - Creating shared instance of singleton bean 'IOConfig'
+2024-10-06 13:35:22 DEBUG DefaultListableBeanFactory:225 - Creating shared instance of singleton bean 'mainConfig'
+2024-10-06 13:35:22 DEBUG DefaultListableBeanFactory:225 - Creating shared instance of singleton bean 'springConfig'
+2024-10-06 13:35:22 DEBUG PropertySourcesPropertyResolver:115 - Found key 'spring.datasource.url' in PropertySource 'class path resource [application.properties]' with value of type String
+2024-10-06 13:35:22 DEBUG PropertySourcesPropertyResolver:115 - Found key 'spring.datasource.username' in PropertySource 'class path resource [application.properties]' with value of type String
+2024-10-06 13:35:22 DEBUG PropertySourcesPropertyResolver:115 - Found key 'spring.datasource.password' in PropertySource 'class path resource [application.properties]' with value of type String
+2024-10-06 13:35:22 DEBUG PropertySourcesPropertyResolver:115 - Found key 'spring.datasource.driver-class-name' in PropertySource 'class path resource [application.properties]' with value of type String
+2024-10-06 13:35:22 DEBUG DefaultListableBeanFactory:225 - Creating shared instance of singleton bean 'inputStream'
+2024-10-06 13:35:22 DEBUG DefaultListableBeanFactory:225 - Creating shared instance of singleton bean 'outputStream'
+2024-10-06 13:35:28 ERROR Log4j2ConsoleAndFile:20 - java.lang.IllegalArgumentException: Not supported language: 

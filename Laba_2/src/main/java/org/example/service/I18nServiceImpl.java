@@ -1,12 +1,16 @@
 package org.example.service;
 
+import org.example.aop.Analyze;
 import org.example.bot.I18nService;
 import org.example.bot.LanguageService;
 import org.example.bot.LoggerConsole;
-
+import org.springframework.stereotype.Service;
 import java.util.Map;
 
+@Service
+@Analyze
 public class I18nServiceImpl implements I18nService {
+
     private Map<String, String> phraseMap = Map.ofEntries(
             Map.entry("ru#enter-barber-name", "Введите название барбера: "),
             Map.entry("ru#command-not-found", "Команда не найдена. Попробуйте <help>"),

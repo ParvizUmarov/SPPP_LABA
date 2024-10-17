@@ -6,6 +6,7 @@ import org.apache.logging.log4j.Logger;
 import org.example.bot.LoggerConsole;
 import org.springframework.stereotype.Service;
 
+@Service
 public class Log4j2ConsoleAndFile implements LoggerConsole {
 
     private static final Logger logger = LogManager.getLogger(Log4j2ConsoleAndFile.class);

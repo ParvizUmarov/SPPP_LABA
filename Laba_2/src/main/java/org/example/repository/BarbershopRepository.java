@@ -1,5 +1,6 @@
 package org.example.repository;
 
+import org.example.aop.Analyze;
 import org.example.bot.I18nService;
 import org.example.bot.LoggerConsole;
 import org.example.dto.BarberDto;
@@ -9,8 +10,8 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 @Repository
+@Analyze
 public class BarbershopRepository {
-
     private final JdbcTemplate jdbcTemplate;
     private final I18nService i18n;
     private final LoggerConsole logger;
@@ -24,18 +25,18 @@ public class BarbershopRepository {
 
     public String getUserByName(String name) {
         String sql = "SELECT * FROM barber WHERE name = ?";
-        var result = jdbcTemplate.query(sql, new Object[]{name}, new BeanPropertyRowMapper<>(BarberDto.class));
+        var result = jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(BarberDto.class), name);
         StringBuilder sb = new StringBuilder();
 
         for (BarberDto barber : result) {
             sb = dtoToString(barber);
         }
 
-        logger.logINFO("repository: " + sql);
-
+        logger.logINFO("getUserByName: " + sql);
         return sb.toString();
     }
 
+    @Deprecated
     public String getAllBarber() {
         String sql = "SELECT * FROM barber LIMIT 10";
         var result = jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(BarberDto.class));
@@ -44,7 +45,7 @@ public class BarbershopRepository {
         for (BarberDto barber : result) {
             sb.append(dtoToString(barber)).append("\n\n");
         }
-        logger.logINFO("repository: " + sql);
+        logger.logINFO("get all barber: " + sql);
         return sb.toString();
     }
 

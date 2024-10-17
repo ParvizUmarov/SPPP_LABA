@@ -1,20 +1,20 @@
 package org.example.service;
 
+import org.example.aop.Analyze;
 import org.example.bot.IOService;
 import org.springframework.stereotype.Service;
-
-import java.io.InputStream;
-import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.util.Scanner;
 
+@Service
+@Analyze
 public class IOServiceImpl implements IOService {
     private final Scanner scanner;
     private final PrintWriter writer;
 
-    public IOServiceImpl(InputStream inputStream, OutputStream outputStream) {
-        this.scanner = new Scanner(inputStream);
-        this.writer = new PrintWriter(outputStream);
+    public IOServiceImpl() {
+        this.scanner = new Scanner(System.in);
+        this.writer = new PrintWriter(System.out);
     }
 
     @Override

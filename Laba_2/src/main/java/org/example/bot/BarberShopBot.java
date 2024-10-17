@@ -2,6 +2,7 @@ package org.example.bot;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.example.aop.AnalyzeAspect;
 import org.example.config.SpringConfig;
 import org.example.repository.BarbershopRepository;
 import org.springframework.stereotype.Service;
@@ -14,16 +15,18 @@ public class BarberShopBot {
     private final LanguageService languageService;
     private final BarbershopRepository repository;
     private final LoggerConsole logger;
+    private final AnalyzeAspect analyzeAspect;
 
     public BarberShopBot(I18nService i18nService,
                          IOService ioService,
                          LanguageService languageService,
-                         BarbershopRepository repository, LoggerConsole logger) {
+                         BarbershopRepository repository, LoggerConsole logger, AnalyzeAspect analyzeAspect) {
         this.ioService = ioService;
         this.i18nService = i18nService;
         this.languageService = languageService;
         this.repository = repository;
         this.logger = logger;
+        this.analyzeAspect = analyzeAspect;
     }
 
     public void conversation() {
@@ -42,7 +45,8 @@ public class BarberShopBot {
                 } else if(userInput.contains("lang")){
                    checkLang(userInput);
                 } else {
-                    unrecognizedCommand(userInput);
+                    if(!userInput.contains("exit"))
+                     unrecognizedCommand(userInput);
                 }
             } catch (Exception e) {
                 ioService.print("Error: " + e.getMessage());

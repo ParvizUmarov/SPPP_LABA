@@ -1,11 +1,14 @@
 package org.example.service;
 
+import org.example.aop.Analyze;
 import org.example.bot.LanguageService;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;
 import java.util.Set;
 
+@Service
+@Analyze
 public class LanguageServiceImpl implements LanguageService {
     private static final Collection<String> supportedLanguages = Set.of("ru", "en");
 

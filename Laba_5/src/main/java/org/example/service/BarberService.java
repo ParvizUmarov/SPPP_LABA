@@ -59,16 +59,6 @@ public class BarberService implements CRUDService<String> {
         }catch (Exception e){
             return i18nService.getMessage("cannot-changed");
         }
-
-//        var check =
-//        if (check.isEmpty()) {
-//            return i18nService.getMessage("no-such-user");
-//        } else {
-//            ioService.print(i18nService.getMessage("enter-name"));
-//            var newName = ioService.readLine();
-//            var isUpdate = repository.updateBarber(newName, oldName);
-//            return isUpdate ? i18nService.getMessage("name-changed") + newName : i18nService.getMessage("cannot-changed");
-//        }
     }
 
     @Override

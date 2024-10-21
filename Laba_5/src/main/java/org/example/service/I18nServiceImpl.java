@@ -21,6 +21,13 @@ public class I18nServiceImpl implements I18nService {
             Map.entry("ru#name-changed", "Имя пользователь был изменен на: "),
             Map.entry("ru#cannot-changed", "Не удалось изменить имя пользователя: "),
             Map.entry("ru#cannot-delete", "Не удалось удалить пользователя: "),
+            Map.entry("ru#service-name", "Название услуги: "),
+            Map.entry("ru#service-price", "Стоимость услуги: "),
+            Map.entry("ru#service-delete", "Сервис удален"),
+            Map.entry("ru#service-create", "Сервис успешно создан"),
+            Map.entry("ru#enter-service-price", "Введите цену на услугу:"),
+            Map.entry("ru#service-update-error", "Не получилось обновить"),
+            Map.entry("ru#service-update-success", "Данные сервиса успешно изменены"),
 
             Map.entry("en#helpCommand", "All commands:\n-find <имя>\n-find all\n-help"),
             Map.entry("en#no-info", "No information"),
@@ -34,7 +41,14 @@ public class I18nServiceImpl implements I18nService {
             Map.entry("en#enter-name", "Enter a new name: "),
             Map.entry("en#name-changed", "The username has been changed to: "),
             Map.entry("en#cannot-changed", "Failed to change username: "),
-            Map.entry("en#cannot-delete", "Failed to delete user: ")
+            Map.entry("en#cannot-delete", "Failed to delete user: "),
+            Map.entry("en#service-name", "Service name: "),
+            Map.entry("en#service-price", "Service price: "),
+            Map.entry("en#service-delete", "Service deleted"),
+            Map.entry("en#service-create", "Service created successfully! "),
+            Map.entry("en#enter-service-price", "Enter the price for the service: "),
+            Map.entry("en#service-update-error", "Cannot update service"),
+            Map.entry("en#service-update-success", "Service update successfully")
 
     );
 

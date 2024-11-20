@@ -10,6 +10,7 @@ import lombok.ToString;
 @Setter
 @ToString
 @Table(name = "services")
+@NamedQuery(name = "getallservice", query = "select s from Services s")
 public class Services {
 
     @Id

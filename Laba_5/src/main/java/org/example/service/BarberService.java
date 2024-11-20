@@ -3,7 +3,7 @@ package org.example.service;
 import lombok.RequiredArgsConstructor;
 import org.example.dto.BarberDto;
 import org.example.entity.Barber;
-import org.example.repository.BarberRepository;
+import org.example.repository.Repo;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -12,11 +12,11 @@ public class BarberService implements CRUDService<String> {
 
     private final IOService ioService;
     private final I18nService i18nService;
-    private final BarberRepository repository;
+    private final Repo<Barber> repository;
 
     @Override
     public String getAll() {
-        var result = repository.getAllBarbers();
+        var result = repository.getAll();
         StringBuilder sb = new StringBuilder();
         for (Barber barber : result) {
             sb.append(entityToString(barber)).append("\n\n");
@@ -26,7 +26,7 @@ public class BarberService implements CRUDService<String> {
 
     @Override
     public String get(String name) {
-        var result = repository.findByName(name);
+        var result = repository.getByArg(name);
         return entityToString(result).toString();
     }
 
@@ -41,7 +41,7 @@ public class BarberService implements CRUDService<String> {
             barber.setPhone("99999999");
             barber.setWorkExperience(10);
             barber.setAuthState(false);
-            repository.save(barber);
+            repository.add(barber);
             return i18nService.getMessage("succesfully-create");
         }catch (Exception e){
             return i18nService.getMessage("error");
@@ -54,7 +54,7 @@ public class BarberService implements CRUDService<String> {
         try{
             ioService.print(i18nService.getMessage("enter-name"));
             var newName = ioService.readLine();
-            repository.updateBarber(newName, oldName);
+            repository.update(newName, oldName);
             return i18nService.getMessage("name-changed") + newName;
         }catch (Exception e){
             return i18nService.getMessage("cannot-changed");
@@ -64,7 +64,7 @@ public class BarberService implements CRUDService<String> {
     @Override
     public String delete(String data) {
         try{
-            repository.deleteBarber(data);
+            repository.delete(data);
             return i18nService.getMessage("succesfully-create");
         }catch (Exception e){
             ioService.println(e.toString());

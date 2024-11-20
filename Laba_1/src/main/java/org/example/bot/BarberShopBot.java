@@ -2,8 +2,8 @@ package org.example.bot;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.example.config.SpringConfig;
 import org.example.repository.BarbershopRepository;
+import org.example.repository.CRUDRepo;
 import org.springframework.stereotype.Service;
 
 @Service("bot")
@@ -12,7 +12,7 @@ public class BarberShopBot {
     private final I18nService i18nService;
     private final IOService ioService;
     private final LanguageService languageService;
-    private final BarbershopRepository repository;
+    private final CRUDRepo<String> repository;
     private final LoggerConsole logger;
 
     public BarberShopBot(I18nService i18nService,
@@ -77,7 +77,7 @@ public class BarberShopBot {
 
     private void findAll() {
         try {
-            var result = repository.getAllBarber();
+            var result = repository.getAll();
             ioService.println(result);
         } catch (Exception e) {
             logger.logERROR(e.toString());
@@ -93,7 +93,7 @@ public class BarberShopBot {
         try {
             var list = userInput.split(" ");
             var name = list[1];
-            var result = repository.getUserByName(name);
+            var result = repository.getByArg(name);
             ioService.println(result.isEmpty() ? i18nService.getMessage("no-info") : result);
         } catch (Exception e) {
             logger.logERROR(e.toString());

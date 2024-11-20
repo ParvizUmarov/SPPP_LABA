@@ -11,7 +11,7 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 @Analyze
-public class BarbershopRepository {
+public class BarbershopRepository implements CRUDRepository<String>{
     private final JdbcTemplate jdbcTemplate;
     private final I18nService i18n;
     private final LoggerConsole logger;
@@ -23,9 +23,18 @@ public class BarbershopRepository {
         this.logger = logger;
     }
 
-    public String getUserByName(String name) {
+    StringBuilder dtoToString(BarberDto barber){
+        StringBuilder sb = new StringBuilder();
+        return sb.append(i18n.getMessage("name")).append(" ").append(barber.getName()).append("\n")
+                .append(i18n.getMessage("surname")).append(" ").append(barber.getSurname()).append("\n")
+                .append(i18n.getMessage("phone")).append(" ").append(barber.getPhone()).append("\n")
+                .append(i18n.getMessage("mail")).append(" ").append(barber.getMail());
+    }
+
+    @Override
+    public String getByArg(String arg) {
         String sql = "SELECT * FROM barber WHERE name = ?";
-        var result = jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(BarberDto.class), name);
+        var result = jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(BarberDto.class), arg);
         StringBuilder sb = new StringBuilder();
 
         for (BarberDto barber : result) {
@@ -37,7 +46,8 @@ public class BarbershopRepository {
     }
 
     @Deprecated
-    public String getAllBarber() {
+    @Override
+    public String getAll() {
         String sql = "SELECT * FROM barber LIMIT 10";
         var result = jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(BarberDto.class));
 
@@ -47,13 +57,5 @@ public class BarbershopRepository {
         }
         logger.logINFO("get all barber: " + sql);
         return sb.toString();
-    }
-
-    StringBuilder dtoToString(BarberDto barber){
-        StringBuilder sb = new StringBuilder();
-        return sb.append(i18n.getMessage("name")).append(" ").append(barber.getName()).append("\n")
-                .append(i18n.getMessage("surname")).append(" ").append(barber.getSurname()).append("\n")
-                .append(i18n.getMessage("phone")).append(" ").append(barber.getPhone()).append("\n")
-                .append(i18n.getMessage("mail")).append(" ").append(barber.getMail());
     }
 }

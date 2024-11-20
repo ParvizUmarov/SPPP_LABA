@@ -23,7 +23,7 @@ public class Command {
 
     @ShellMethod(key = "lang")
     public String getCurrentLanguage() {
-        return languageService.getCurrentLanguage();
+        return languageService.getCurrentLanguage().toString();
     }
 
     @ShellMethod(key = "lang -c")

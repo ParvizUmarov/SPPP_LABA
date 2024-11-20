@@ -19,12 +19,17 @@ public class Command {
 
     @ShellMethod(key = "lang")
     public String getCurrentLanguage() {
-        return languageService.getCurrentLanguage();
+        return languageService.getCurrentLanguage().toString();
     }
 
     @ShellMethod(key = "lang -c")
     public String changeLanguage(@ShellOption String arg) {
-        return languageService.setCurrentLanguage(arg);
+        try{
+            languageService.setCurrentLanguage(arg);
+            return "language changed to " + arg;
+        }catch (Exception e){
+            return "language doesn't changed to " + arg;
+        }
     }
 
     @ShellMethod(key = "find -a")

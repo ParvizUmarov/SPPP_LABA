@@ -1,19 +1,19 @@
 package org.example.service;
 
+import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;
+import java.util.Locale;
 import java.util.Set;
 
 @Service
 public class LanguageServiceImpl implements LanguageService {
     private static final Collection<String> supportedLanguages = Set.of("ru", "en");
 
-    private String currentLanguage = "ru";
-
     @Override
-    public String getCurrentLanguage() {
-        return currentLanguage;
+    public Locale getCurrentLanguage() {
+        return LocaleContextHolder.getLocale();
     }
 
     @Override
@@ -21,6 +21,7 @@ public class LanguageServiceImpl implements LanguageService {
         language = language.strip().toLowerCase();
         if ( ! supportedLanguages.contains(language))
             throw new IllegalArgumentException("Not supported language: " + language);
-        currentLanguage = language;
+
+        LocaleContextHolder.setLocale(Locale.forLanguageTag(language));
     }
 }

@@ -1,12 +1,13 @@
 package org.example.service;
 
 import org.example.repository.BarberRepository;
+import org.example.repository.Repo;
 import org.springframework.stereotype.Service;
 
 @Service
 public class BarberService implements CRUDService<String> {
 
-    private final BarberRepository repository;
+    private final Repo<String> repository;
 
     public BarberService(BarberRepository repository) {
         this.repository = repository;
@@ -14,11 +15,11 @@ public class BarberService implements CRUDService<String> {
 
     @Override
     public String getAll() {
-        return repository.getAllBarber();
+        return repository.getAll();
     }
 
     @Override
     public String get(String name) {
-        return repository.getUserByName(name);
+        return repository.getByArg(name);
     }
 }

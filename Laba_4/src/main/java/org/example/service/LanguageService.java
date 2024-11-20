@@ -1,6 +1,8 @@
 package org.example.service;
 
+import java.util.Locale;
+
 public interface LanguageService {
-    String getCurrentLanguage();
-    String setCurrentLanguage(String language);
+    Locale getCurrentLanguage();
+    void setCurrentLanguage(String language);
 }

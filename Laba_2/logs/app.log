@@ -1,133 +1,113 @@
-2024-10-17 19:54:47 DEBUG AnnotationConfigApplicationContext:654 - Refreshing org.springframework.context.annotation.AnnotationConfigApplicationContext@3c947bc5
-2024-10-17 19:54:47 DEBUG DefaultListableBeanFactory:225 - Creating shared instance of singleton bean 'org.springframework.context.annotation.internalConfigurationAnnotationProcessor'
-2024-10-17 19:54:47 DEBUG ClassPathBeanDefinitionScanner:441 - Identified candidate component class: file [/home/parviz/Main/Univer/СППП/Лабы/Laba_2/build/classes/java/main/org/example/aop/AnalyzeAspect.class]
-2024-10-17 19:54:47 DEBUG ClassPathBeanDefinitionScanner:441 - Identified candidate component class: file [/home/parviz/Main/Univer/СППП/Лабы/Laba_2/build/classes/java/main/org/example/aop/DeprecateLogging.class]
-2024-10-17 19:54:47 DEBUG ClassPathBeanDefinitionScanner:441 - Identified candidate component class: file [/home/parviz/Main/Univer/СППП/Лабы/Laba_2/build/classes/java/main/org/example/bot/BarberShopBot.class]
-2024-10-17 19:54:47 DEBUG ClassPathBeanDefinitionScanner:441 - Identified candidate component class: file [/home/parviz/Main/Univer/СППП/Лабы/Laba_2/build/classes/java/main/org/example/config/DataSourceConfig.class]
-2024-10-17 19:54:47 DEBUG ClassPathBeanDefinitionScanner:441 - Identified candidate component class: file [/home/parviz/Main/Univer/СППП/Лабы/Laba_2/build/classes/java/main/org/example/config/SpringConfig.class]
-2024-10-17 19:54:47 DEBUG ClassPathBeanDefinitionScanner:441 - Identified candidate component class: file [/home/parviz/Main/Univer/СППП/Лабы/Laba_2/build/classes/java/main/org/example/repository/BarbershopRepository.class]
-2024-10-17 19:54:47 DEBUG ClassPathBeanDefinitionScanner:441 - Identified candidate component class: file [/home/parviz/Main/Univer/СППП/Лабы/Laba_2/build/classes/java/main/org/example/service/I18nServiceImpl.class]
-2024-10-17 19:54:47 DEBUG ClassPathBeanDefinitionScanner:441 - Identified candidate component class: file [/home/parviz/Main/Univer/СППП/Лабы/Laba_2/build/classes/java/main/org/example/service/IOServiceImpl.class]
-2024-10-17 19:54:47 DEBUG ClassPathBeanDefinitionScanner:441 - Identified candidate component class: file [/home/parviz/Main/Univer/СППП/Лабы/Laba_2/build/classes/java/main/org/example/service/LanguageServiceImpl.class]
-2024-10-17 19:54:47 DEBUG ClassPathBeanDefinitionScanner:441 - Identified candidate component class: file [/home/parviz/Main/Univer/СППП/Лабы/Laba_2/build/classes/java/main/org/example/service/Log4j2ConsoleAndFile.class]
-2024-10-17 19:54:47 DEBUG DefaultListableBeanFactory:225 - Creating shared instance of singleton bean 'org.springframework.context.event.internalEventListenerProcessor'
-2024-10-17 19:54:47 DEBUG DefaultListableBeanFactory:225 - Creating shared instance of singleton bean 'org.springframework.context.event.internalEventListenerFactory'
-2024-10-17 19:54:47 DEBUG DefaultListableBeanFactory:225 - Creating shared instance of singleton bean 'org.springframework.context.annotation.internalAutowiredAnnotationProcessor'
-2024-10-17 19:54:47 DEBUG DefaultListableBeanFactory:225 - Creating shared instance of singleton bean 'org.springframework.aop.config.internalAutoProxyCreator'
-2024-10-17 19:54:47 DEBUG DefaultListableBeanFactory:225 - Creating shared instance of singleton bean 'main'
-2024-10-17 19:54:47 DEBUG ReflectiveAspectJAdvisorFactory:258 - Found AspectJ method: public java.lang.Object org.example.aop.AnalyzeAspect.analyze(org.aspectj.lang.ProceedingJoinPoint) throws java.lang.Throwable
-2024-10-17 19:54:47 DEBUG ReflectiveAspectJAdvisorFactory:258 - Found AspectJ method: public void org.example.aop.DeprecateLogging.logDeprecatedMethodCall(org.aspectj.lang.JoinPoint)
-2024-10-17 19:54:47 DEBUG DefaultListableBeanFactory:225 - Creating shared instance of singleton bean 'analyzeAspect'
-2024-10-17 19:54:47 DEBUG DefaultListableBeanFactory:225 - Creating shared instance of singleton bean 'log4j2ConsoleAndFile'
-2024-10-17 19:54:47 DEBUG DefaultListableBeanFactory:808 - Autowiring by type from bean name 'analyzeAspect' via constructor to bean named 'log4j2ConsoleAndFile'
-2024-10-17 19:54:47 DEBUG DefaultListableBeanFactory:225 - Creating shared instance of singleton bean 'deprecateLogging'
-2024-10-17 19:54:47 DEBUG DefaultListableBeanFactory:225 - Creating shared instance of singleton bean 'bot'
-2024-10-17 19:54:47 DEBUG DefaultListableBeanFactory:225 - Creating shared instance of singleton bean 'i18nServiceImpl'
-2024-10-17 19:54:47 DEBUG DefaultListableBeanFactory:225 - Creating shared instance of singleton bean 'languageServiceImpl'
-2024-10-17 19:54:47 DEBUG DefaultListableBeanFactory:808 - Autowiring by type from bean name 'i18nServiceImpl' via constructor to bean named 'log4j2ConsoleAndFile'
-2024-10-17 19:54:47 DEBUG DefaultListableBeanFactory:808 - Autowiring by type from bean name 'i18nServiceImpl' via constructor to bean named 'languageServiceImpl'
-2024-10-17 19:54:47 DEBUG DefaultListableBeanFactory:225 - Creating shared instance of singleton bean 'IOServiceImpl'
-2024-10-17 19:54:47 DEBUG DefaultListableBeanFactory:225 - Creating shared instance of singleton bean 'barbershopRepository'
-2024-10-17 19:54:47 DEBUG DefaultListableBeanFactory:225 - Creating shared instance of singleton bean 'jdbcTemplate'
-2024-10-17 19:54:47 DEBUG DefaultListableBeanFactory:225 - Creating shared instance of singleton bean 'dataSourceConfig'
-2024-10-17 19:54:47 DEBUG DefaultListableBeanFactory:225 - Creating shared instance of singleton bean 'dataSource'
-2024-10-17 19:54:47 WARN  LocalVariableTableParameterNameDiscoverer:123 - Using deprecated '-debug' fallback for parameter name resolution. Compile the affected code with '-parameters' instead or avoid its introspection: org.example.config.DataSourceConfig
-2024-10-17 19:54:47 DEBUG DefaultListableBeanFactory:225 - Creating shared instance of singleton bean 'config'
-2024-10-17 19:54:47 DEBUG PropertySourcesPropertyResolver:115 - Found key 'spring.datasource.url' in PropertySource 'class path resource [application.properties]' with value of type String
-2024-10-17 19:54:47 DEBUG PropertySourcesPropertyResolver:115 - Found key 'spring.datasource.username' in PropertySource 'class path resource [application.properties]' with value of type String
-2024-10-17 19:54:47 DEBUG PropertySourcesPropertyResolver:115 - Found key 'spring.datasource.password' in PropertySource 'class path resource [application.properties]' with value of type String
-2024-10-17 19:54:47 DEBUG PropertySourcesPropertyResolver:115 - Found key 'spring.datasource.driver-class-name' in PropertySource 'class path resource [application.properties]' with value of type String
-2024-10-17 19:54:47 DEBUG DefaultListableBeanFactory:808 - Autowiring by type from bean name 'dataSource' via factory method to bean named 'config'
-2024-10-17 19:54:48 DEBUG DriverManagerDataSource:134 - Loaded JDBC driver: org.postgresql.Driver
-2024-10-17 19:54:48 DEBUG DefaultListableBeanFactory:808 - Autowiring by type from bean name 'jdbcTemplate' via factory method to bean named 'dataSource'
-2024-10-17 19:54:48 DEBUG DefaultListableBeanFactory:808 - Autowiring by type from bean name 'barbershopRepository' via constructor to bean named 'jdbcTemplate'
-2024-10-17 19:54:48 DEBUG DefaultListableBeanFactory:808 - Autowiring by type from bean name 'barbershopRepository' via constructor to bean named 'i18nServiceImpl'
-2024-10-17 19:54:48 DEBUG DefaultListableBeanFactory:808 - Autowiring by type from bean name 'barbershopRepository' via constructor to bean named 'log4j2ConsoleAndFile'
-2024-10-17 19:54:48 DEBUG DefaultListableBeanFactory:808 - Autowiring by type from bean name 'bot' via constructor to bean named 'i18nServiceImpl'
-2024-10-17 19:54:48 DEBUG DefaultListableBeanFactory:808 - Autowiring by type from bean name 'bot' via constructor to bean named 'IOServiceImpl'
-2024-10-17 19:54:48 DEBUG DefaultListableBeanFactory:808 - Autowiring by type from bean name 'bot' via constructor to bean named 'languageServiceImpl'
-2024-10-17 19:54:48 DEBUG DefaultListableBeanFactory:808 - Autowiring by type from bean name 'bot' via constructor to bean named 'barbershopRepository'
-2024-10-17 19:54:48 DEBUG DefaultListableBeanFactory:808 - Autowiring by type from bean name 'bot' via constructor to bean named 'log4j2ConsoleAndFile'
-2024-10-17 19:54:48 DEBUG DefaultListableBeanFactory:808 - Autowiring by type from bean name 'bot' via constructor to bean named 'analyzeAspect'
-2024-10-17 19:54:48 DEBUG DefaultListableBeanFactory:225 - Creating shared instance of singleton bean 'springConfig'
-2024-10-17 19:54:48 DEBUG PropertySourcesPropertyResolver:115 - Found key 'spring.datasource.url' in PropertySource 'class path resource [application.properties]' with value of type String
-2024-10-17 19:54:48 DEBUG PropertySourcesPropertyResolver:115 - Found key 'spring.datasource.username' in PropertySource 'class path resource [application.properties]' with value of type String
-2024-10-17 19:54:48 DEBUG PropertySourcesPropertyResolver:115 - Found key 'spring.datasource.password' in PropertySource 'class path resource [application.properties]' with value of type String
-2024-10-17 19:54:48 DEBUG PropertySourcesPropertyResolver:115 - Found key 'spring.datasource.driver-class-name' in PropertySource 'class path resource [application.properties]' with value of type String
-2024-10-17 19:54:52 INFO  Log4j2ConsoleAndFile:16 - lang: welcome - getMessage
-2024-10-17 19:54:55 DEBUG JdbcTemplate:719 - Executing prepared SQL query
-2024-10-17 19:54:55 DEBUG JdbcTemplate:648 - Executing prepared SQL statement [SELECT * FROM barber WHERE name = ?]
-2024-10-17 19:54:55 DEBUG DataSourceUtils:117 - Fetching JDBC Connection from DataSource
-2024-10-17 19:54:55 DEBUG DriverManagerDataSource:144 - Creating new JDBC DriverManager Connection to [jdbc:postgresql://localhost:5432/barber_shop_db]
-2024-10-17 19:54:55 DEBUG BeanPropertyRowMapper:339 - Mapping column 'id' to property 'id' of type 'java.lang.Integer'
-2024-10-17 19:54:55 DEBUG BeanPropertyRowMapper:339 - Mapping column 'name' to property 'name' of type 'java.lang.String'
-2024-10-17 19:54:55 DEBUG BeanPropertyRowMapper:339 - Mapping column 'surname' to property 'surname' of type 'java.lang.String'
-2024-10-17 19:54:55 DEBUG BeanPropertyRowMapper:339 - Mapping column 'birthday' to property 'birthday' of type 'java.lang.String'
-2024-10-17 19:54:55 DEBUG BeanPropertyRowMapper:339 - Mapping column 'phone' to property 'phone' of type 'java.lang.String'
-2024-10-17 19:54:55 DEBUG BeanPropertyRowMapper:339 - Mapping column 'mail' to property 'mail' of type 'java.lang.String'
-2024-10-17 19:54:55 DEBUG BeanPropertyRowMapper:339 - Mapping column 'work_experience' to property 'workExperience' of type 'java.lang.Integer'
-2024-10-17 19:54:55 DEBUG BeanPropertyRowMapper:339 - Mapping column 'password' to property 'password' of type 'java.lang.String'
-2024-10-17 19:54:55 DEBUG BeanPropertyRowMapper:339 - Mapping column 'auth_state' to property 'authState' of type 'java.lang.Boolean'
-2024-10-17 19:54:55 DEBUG BeanPropertyRowMapper:339 - Mapping column 'salon_id' to property 'salonId' of type 'java.lang.Integer'
-2024-10-17 19:54:55 DEBUG BeanPropertyRowMapper:339 - Mapping column 'service_id' to property 'serviceId' of type 'java.lang.Integer'
-2024-10-17 19:54:55 INFO  Log4j2ConsoleAndFile:16 - lang: name - getMessage
-2024-10-17 19:54:55 INFO  Log4j2ConsoleAndFile:16 - lang: surname - getMessage
-2024-10-17 19:54:55 INFO  Log4j2ConsoleAndFile:16 - lang: phone - getMessage
-2024-10-17 19:54:55 INFO  Log4j2ConsoleAndFile:16 - lang: mail - getMessage
-2024-10-17 19:54:55 INFO  Log4j2ConsoleAndFile:16 - getUserByName: SELECT * FROM barber WHERE name = ?
-2024-10-17 19:54:59 DEBUG JdbcTemplate:445 - Executing SQL query [SELECT * FROM barber LIMIT 10]
-2024-10-17 19:54:59 DEBUG DataSourceUtils:117 - Fetching JDBC Connection from DataSource
-2024-10-17 19:54:59 DEBUG DriverManagerDataSource:144 - Creating new JDBC DriverManager Connection to [jdbc:postgresql://localhost:5432/barber_shop_db]
-2024-10-17 19:54:59 DEBUG BeanPropertyRowMapper:339 - Mapping column 'id' to property 'id' of type 'java.lang.Integer'
-2024-10-17 19:54:59 DEBUG BeanPropertyRowMapper:339 - Mapping column 'name' to property 'name' of type 'java.lang.String'
-2024-10-17 19:54:59 DEBUG BeanPropertyRowMapper:339 - Mapping column 'surname' to property 'surname' of type 'java.lang.String'
-2024-10-17 19:54:59 DEBUG BeanPropertyRowMapper:339 - Mapping column 'birthday' to property 'birthday' of type 'java.lang.String'
-2024-10-17 19:54:59 DEBUG BeanPropertyRowMapper:339 - Mapping column 'phone' to property 'phone' of type 'java.lang.String'
-2024-10-17 19:54:59 DEBUG BeanPropertyRowMapper:339 - Mapping column 'mail' to property 'mail' of type 'java.lang.String'
-2024-10-17 19:54:59 DEBUG BeanPropertyRowMapper:339 - Mapping column 'work_experience' to property 'workExperience' of type 'java.lang.Integer'
-2024-10-17 19:54:59 DEBUG BeanPropertyRowMapper:339 - Mapping column 'password' to property 'password' of type 'java.lang.String'
-2024-10-17 19:54:59 DEBUG BeanPropertyRowMapper:339 - Mapping column 'auth_state' to property 'authState' of type 'java.lang.Boolean'
-2024-10-17 19:54:59 DEBUG BeanPropertyRowMapper:339 - Mapping column 'salon_id' to property 'salonId' of type 'java.lang.Integer'
-2024-10-17 19:54:59 DEBUG BeanPropertyRowMapper:339 - Mapping column 'service_id' to property 'serviceId' of type 'java.lang.Integer'
-2024-10-17 19:54:59 INFO  Log4j2ConsoleAndFile:16 - lang: name - getMessage
-2024-10-17 19:54:59 INFO  Log4j2ConsoleAndFile:16 - lang: surname - getMessage
-2024-10-17 19:54:59 INFO  Log4j2ConsoleAndFile:16 - lang: phone - getMessage
-2024-10-17 19:54:59 INFO  Log4j2ConsoleAndFile:16 - lang: mail - getMessage
-2024-10-17 19:54:59 INFO  Log4j2ConsoleAndFile:16 - lang: name - getMessage
-2024-10-17 19:54:59 INFO  Log4j2ConsoleAndFile:16 - lang: surname - getMessage
-2024-10-17 19:54:59 INFO  Log4j2ConsoleAndFile:16 - lang: phone - getMessage
-2024-10-17 19:54:59 INFO  Log4j2ConsoleAndFile:16 - lang: mail - getMessage
-2024-10-17 19:54:59 INFO  Log4j2ConsoleAndFile:16 - lang: name - getMessage
-2024-10-17 19:54:59 INFO  Log4j2ConsoleAndFile:16 - lang: surname - getMessage
-2024-10-17 19:54:59 INFO  Log4j2ConsoleAndFile:16 - lang: phone - getMessage
-2024-10-17 19:54:59 INFO  Log4j2ConsoleAndFile:16 - lang: mail - getMessage
-2024-10-17 19:54:59 INFO  Log4j2ConsoleAndFile:16 - lang: name - getMessage
-2024-10-17 19:54:59 INFO  Log4j2ConsoleAndFile:16 - lang: surname - getMessage
-2024-10-17 19:54:59 INFO  Log4j2ConsoleAndFile:16 - lang: phone - getMessage
-2024-10-17 19:54:59 INFO  Log4j2ConsoleAndFile:16 - lang: mail - getMessage
-2024-10-17 19:54:59 INFO  Log4j2ConsoleAndFile:16 - lang: name - getMessage
-2024-10-17 19:54:59 INFO  Log4j2ConsoleAndFile:16 - lang: surname - getMessage
-2024-10-17 19:54:59 INFO  Log4j2ConsoleAndFile:16 - lang: phone - getMessage
-2024-10-17 19:54:59 INFO  Log4j2ConsoleAndFile:16 - lang: mail - getMessage
-2024-10-17 19:54:59 INFO  Log4j2ConsoleAndFile:16 - lang: name - getMessage
-2024-10-17 19:54:59 INFO  Log4j2ConsoleAndFile:16 - lang: surname - getMessage
-2024-10-17 19:54:59 INFO  Log4j2ConsoleAndFile:16 - lang: phone - getMessage
-2024-10-17 19:54:59 INFO  Log4j2ConsoleAndFile:16 - lang: mail - getMessage
-2024-10-17 19:54:59 INFO  Log4j2ConsoleAndFile:16 - lang: name - getMessage
-2024-10-17 19:54:59 INFO  Log4j2ConsoleAndFile:16 - lang: surname - getMessage
-2024-10-17 19:54:59 INFO  Log4j2ConsoleAndFile:16 - lang: phone - getMessage
-2024-10-17 19:54:59 INFO  Log4j2ConsoleAndFile:16 - lang: mail - getMessage
-2024-10-17 19:54:59 INFO  Log4j2ConsoleAndFile:16 - lang: name - getMessage
-2024-10-17 19:54:59 INFO  Log4j2ConsoleAndFile:16 - lang: surname - getMessage
-2024-10-17 19:54:59 INFO  Log4j2ConsoleAndFile:16 - lang: phone - getMessage
-2024-10-17 19:54:59 INFO  Log4j2ConsoleAndFile:16 - lang: mail - getMessage
-2024-10-17 19:54:59 INFO  Log4j2ConsoleAndFile:16 - lang: name - getMessage
-2024-10-17 19:54:59 INFO  Log4j2ConsoleAndFile:16 - lang: surname - getMessage
-2024-10-17 19:54:59 INFO  Log4j2ConsoleAndFile:16 - lang: phone - getMessage
-2024-10-17 19:54:59 INFO  Log4j2ConsoleAndFile:16 - lang: mail - getMessage
-2024-10-17 19:54:59 INFO  Log4j2ConsoleAndFile:16 - lang: name - getMessage
-2024-10-17 19:54:59 INFO  Log4j2ConsoleAndFile:16 - lang: surname - getMessage
-2024-10-17 19:54:59 INFO  Log4j2ConsoleAndFile:16 - lang: phone - getMessage
-2024-10-17 19:54:59 INFO  Log4j2ConsoleAndFile:16 - lang: mail - getMessage
-2024-10-17 19:54:59 INFO  Log4j2ConsoleAndFile:16 - get all barber: SELECT * FROM barber LIMIT 10
-2024-10-17 19:54:59 WARN  DeprecateLogging:19 - Вызван метод, помеченный @Deprecated: BarbershopRepository.getAllBarber()
+2024-11-19 16:07:30 DEBUG AnnotationConfigApplicationContext:654 - Refreshing org.springframework.context.annotation.AnnotationConfigApplicationContext@3c947bc5
+2024-11-19 16:07:30 DEBUG DefaultListableBeanFactory:225 - Creating shared instance of singleton bean 'org.springframework.context.annotation.internalConfigurationAnnotationProcessor'
+2024-11-19 16:07:30 DEBUG ClassPathBeanDefinitionScanner:441 - Identified candidate component class: file [/home/parviz/Main/Univer/СППП/Лабы/Laba_2/build/classes/java/main/org/example/aop/AnalyzeAspect.class]
+2024-11-19 16:07:30 DEBUG ClassPathBeanDefinitionScanner:441 - Identified candidate component class: file [/home/parviz/Main/Univer/СППП/Лабы/Laba_2/build/classes/java/main/org/example/aop/DeprecateLogging.class]
+2024-11-19 16:07:30 DEBUG ClassPathBeanDefinitionScanner:441 - Identified candidate component class: file [/home/parviz/Main/Univer/СППП/Лабы/Laba_2/build/classes/java/main/org/example/bot/BarberShopBot.class]
+2024-11-19 16:07:30 DEBUG ClassPathBeanDefinitionScanner:441 - Identified candidate component class: file [/home/parviz/Main/Univer/СППП/Лабы/Laba_2/build/classes/java/main/org/example/config/DataSourceConfig.class]
+2024-11-19 16:07:30 DEBUG ClassPathBeanDefinitionScanner:441 - Identified candidate component class: file [/home/parviz/Main/Univer/СППП/Лабы/Laba_2/build/classes/java/main/org/example/config/SpringConfig.class]
+2024-11-19 16:07:30 DEBUG ClassPathBeanDefinitionScanner:441 - Identified candidate component class: file [/home/parviz/Main/Univer/СППП/Лабы/Laba_2/build/classes/java/main/org/example/repository/BarbershopRepository.class]
+2024-11-19 16:07:30 DEBUG ClassPathBeanDefinitionScanner:441 - Identified candidate component class: file [/home/parviz/Main/Univer/СППП/Лабы/Laba_2/build/classes/java/main/org/example/service/I18nServiceImpl.class]
+2024-11-19 16:07:30 DEBUG ClassPathBeanDefinitionScanner:441 - Identified candidate component class: file [/home/parviz/Main/Univer/СППП/Лабы/Laba_2/build/classes/java/main/org/example/service/IOServiceImpl.class]
+2024-11-19 16:07:30 DEBUG ClassPathBeanDefinitionScanner:441 - Identified candidate component class: file [/home/parviz/Main/Univer/СППП/Лабы/Laba_2/build/classes/java/main/org/example/service/LanguageServiceImpl.class]
+2024-11-19 16:07:30 DEBUG ClassPathBeanDefinitionScanner:441 - Identified candidate component class: file [/home/parviz/Main/Univer/СППП/Лабы/Laba_2/build/classes/java/main/org/example/service/Log4j2ConsoleAndFile.class]
+2024-11-19 16:07:30 DEBUG DefaultListableBeanFactory:225 - Creating shared instance of singleton bean 'org.springframework.context.event.internalEventListenerProcessor'
+2024-11-19 16:07:30 DEBUG DefaultListableBeanFactory:225 - Creating shared instance of singleton bean 'org.springframework.context.event.internalEventListenerFactory'
+2024-11-19 16:07:30 DEBUG DefaultListableBeanFactory:225 - Creating shared instance of singleton bean 'org.springframework.context.annotation.internalAutowiredAnnotationProcessor'
+2024-11-19 16:07:30 DEBUG DefaultListableBeanFactory:225 - Creating shared instance of singleton bean 'org.springframework.aop.config.internalAutoProxyCreator'
+2024-11-19 16:07:30 DEBUG DefaultListableBeanFactory:225 - Creating shared instance of singleton bean 'main'
+2024-11-19 16:07:30 DEBUG ReflectiveAspectJAdvisorFactory:258 - Found AspectJ method: public java.lang.Object org.example.aop.AnalyzeAspect.analyze(org.aspectj.lang.ProceedingJoinPoint) throws java.lang.Throwable
+2024-11-19 16:07:30 DEBUG ReflectiveAspectJAdvisorFactory:258 - Found AspectJ method: public void org.example.aop.DeprecateLogging.logDeprecatedMethodCall(org.aspectj.lang.JoinPoint)
+2024-11-19 16:07:30 DEBUG DefaultListableBeanFactory:225 - Creating shared instance of singleton bean 'analyzeAspect'
+2024-11-19 16:07:30 DEBUG DefaultListableBeanFactory:225 - Creating shared instance of singleton bean 'log4j2ConsoleAndFile'
+2024-11-19 16:07:30 DEBUG DefaultListableBeanFactory:808 - Autowiring by type from bean name 'analyzeAspect' via constructor to bean named 'log4j2ConsoleAndFile'
+2024-11-19 16:07:30 DEBUG DefaultListableBeanFactory:225 - Creating shared instance of singleton bean 'deprecateLogging'
+2024-11-19 16:07:30 DEBUG DefaultListableBeanFactory:225 - Creating shared instance of singleton bean 'bot'
+2024-11-19 16:07:30 DEBUG DefaultListableBeanFactory:225 - Creating shared instance of singleton bean 'i18nServiceImpl'
+2024-11-19 16:07:30 DEBUG DefaultListableBeanFactory:225 - Creating shared instance of singleton bean 'languageServiceImpl'
+2024-11-19 16:07:30 DEBUG DefaultListableBeanFactory:808 - Autowiring by type from bean name 'i18nServiceImpl' via constructor to bean named 'log4j2ConsoleAndFile'
+2024-11-19 16:07:30 DEBUG DefaultListableBeanFactory:808 - Autowiring by type from bean name 'i18nServiceImpl' via constructor to bean named 'languageServiceImpl'
+2024-11-19 16:07:30 DEBUG DefaultListableBeanFactory:225 - Creating shared instance of singleton bean 'IOServiceImpl'
+2024-11-19 16:07:30 DEBUG DefaultListableBeanFactory:225 - Creating shared instance of singleton bean 'barbershopRepository'
+2024-11-19 16:07:30 DEBUG DefaultListableBeanFactory:225 - Creating shared instance of singleton bean 'jdbcTemplate'
+2024-11-19 16:07:30 DEBUG DefaultListableBeanFactory:225 - Creating shared instance of singleton bean 'dataSourceConfig'
+2024-11-19 16:07:31 DEBUG DefaultListableBeanFactory:225 - Creating shared instance of singleton bean 'dataSource'
+2024-11-19 16:07:31 WARN  LocalVariableTableParameterNameDiscoverer:123 - Using deprecated '-debug' fallback for parameter name resolution. Compile the affected code with '-parameters' instead or avoid its introspection: org.example.config.DataSourceConfig
+2024-11-19 16:07:31 DEBUG DefaultListableBeanFactory:225 - Creating shared instance of singleton bean 'config'
+2024-11-19 16:07:31 DEBUG PropertySourcesPropertyResolver:115 - Found key 'spring.datasource.url' in PropertySource 'class path resource [application.properties]' with value of type String
+2024-11-19 16:07:31 DEBUG PropertySourcesPropertyResolver:115 - Found key 'spring.datasource.username' in PropertySource 'class path resource [application.properties]' with value of type String
+2024-11-19 16:07:31 DEBUG PropertySourcesPropertyResolver:115 - Found key 'spring.datasource.password' in PropertySource 'class path resource [application.properties]' with value of type String
+2024-11-19 16:07:31 DEBUG PropertySourcesPropertyResolver:115 - Found key 'spring.datasource.driver-class-name' in PropertySource 'class path resource [application.properties]' with value of type String
+2024-11-19 16:07:31 DEBUG DefaultListableBeanFactory:808 - Autowiring by type from bean name 'dataSource' via factory method to bean named 'config'
+2024-11-19 16:07:31 DEBUG DriverManagerDataSource:134 - Loaded JDBC driver: org.postgresql.Driver
+2024-11-19 16:07:31 DEBUG DefaultListableBeanFactory:808 - Autowiring by type from bean name 'jdbcTemplate' via factory method to bean named 'dataSource'
+2024-11-19 16:07:31 DEBUG DefaultListableBeanFactory:808 - Autowiring by type from bean name 'barbershopRepository' via constructor to bean named 'jdbcTemplate'
+2024-11-19 16:07:31 DEBUG DefaultListableBeanFactory:808 - Autowiring by type from bean name 'barbershopRepository' via constructor to bean named 'i18nServiceImpl'
+2024-11-19 16:07:31 DEBUG DefaultListableBeanFactory:808 - Autowiring by type from bean name 'barbershopRepository' via constructor to bean named 'log4j2ConsoleAndFile'
+2024-11-19 16:07:31 DEBUG DefaultListableBeanFactory:808 - Autowiring by type from bean name 'bot' via constructor to bean named 'i18nServiceImpl'
+2024-11-19 16:07:31 DEBUG DefaultListableBeanFactory:808 - Autowiring by type from bean name 'bot' via constructor to bean named 'IOServiceImpl'
+2024-11-19 16:07:31 DEBUG DefaultListableBeanFactory:808 - Autowiring by type from bean name 'bot' via constructor to bean named 'languageServiceImpl'
+2024-11-19 16:07:31 DEBUG DefaultListableBeanFactory:808 - Autowiring by type from bean name 'bot' via constructor to bean named 'barbershopRepository'
+2024-11-19 16:07:31 DEBUG DefaultListableBeanFactory:808 - Autowiring by type from bean name 'bot' via constructor to bean named 'log4j2ConsoleAndFile'
+2024-11-19 16:07:31 DEBUG DefaultListableBeanFactory:808 - Autowiring by type from bean name 'bot' via constructor to bean named 'analyzeAspect'
+2024-11-19 16:07:31 DEBUG DefaultListableBeanFactory:225 - Creating shared instance of singleton bean 'springConfig'
+2024-11-19 16:07:31 DEBUG PropertySourcesPropertyResolver:115 - Found key 'spring.datasource.url' in PropertySource 'class path resource [application.properties]' with value of type String
+2024-11-19 16:07:31 DEBUG PropertySourcesPropertyResolver:115 - Found key 'spring.datasource.username' in PropertySource 'class path resource [application.properties]' with value of type String
+2024-11-19 16:07:31 DEBUG PropertySourcesPropertyResolver:115 - Found key 'spring.datasource.password' in PropertySource 'class path resource [application.properties]' with value of type String
+2024-11-19 16:07:31 DEBUG PropertySourcesPropertyResolver:115 - Found key 'spring.datasource.driver-class-name' in PropertySource 'class path resource [application.properties]' with value of type String
+2024-11-19 16:07:35 ERROR Log4j2ConsoleAndFile:21 - java.lang.IllegalArgumentException: Not supported language: 
+2024-11-19 16:07:40 DEBUG JdbcTemplate:445 - Executing SQL query [SELECT * FROM barber LIMIT 10]
+2024-11-19 16:07:40 DEBUG DataSourceUtils:117 - Fetching JDBC Connection from DataSource
+2024-11-19 16:07:40 DEBUG DriverManagerDataSource:144 - Creating new JDBC DriverManager Connection to [jdbc:postgresql://localhost:5432/barber_shop_db]
+2024-11-19 16:07:40 DEBUG BeanPropertyRowMapper:339 - Mapping column 'id' to property 'id' of type 'java.lang.Integer'
+2024-11-19 16:07:40 DEBUG BeanPropertyRowMapper:339 - Mapping column 'name' to property 'name' of type 'java.lang.String'
+2024-11-19 16:07:40 DEBUG BeanPropertyRowMapper:339 - Mapping column 'surname' to property 'surname' of type 'java.lang.String'
+2024-11-19 16:07:40 DEBUG BeanPropertyRowMapper:339 - Mapping column 'birthday' to property 'birthday' of type 'java.lang.String'
+2024-11-19 16:07:40 DEBUG BeanPropertyRowMapper:339 - Mapping column 'phone' to property 'phone' of type 'java.lang.String'
+2024-11-19 16:07:40 DEBUG BeanPropertyRowMapper:339 - Mapping column 'mail' to property 'mail' of type 'java.lang.String'
+2024-11-19 16:07:40 DEBUG BeanPropertyRowMapper:339 - Mapping column 'work_experience' to property 'workExperience' of type 'java.lang.Integer'
+2024-11-19 16:07:40 DEBUG BeanPropertyRowMapper:339 - Mapping column 'password' to property 'password' of type 'java.lang.String'
+2024-11-19 16:07:40 DEBUG BeanPropertyRowMapper:339 - Mapping column 'auth_state' to property 'authState' of type 'java.lang.Boolean'
+2024-11-19 16:07:40 DEBUG BeanPropertyRowMapper:339 - Mapping column 'salon_id' to property 'salonId' of type 'java.lang.Integer'
+2024-11-19 16:07:40 DEBUG BeanPropertyRowMapper:339 - Mapping column 'service_id' to property 'serviceId' of type 'java.lang.Integer'
+2024-11-19 16:07:40 INFO  Log4j2ConsoleAndFile:16 - lang: name - getMessage
+2024-11-19 16:07:40 INFO  Log4j2ConsoleAndFile:16 - lang: surname - getMessage
+2024-11-19 16:07:40 INFO  Log4j2ConsoleAndFile:16 - lang: phone - getMessage
+2024-11-19 16:07:40 INFO  Log4j2ConsoleAndFile:16 - lang: mail - getMessage
+2024-11-19 16:07:40 INFO  Log4j2ConsoleAndFile:16 - lang: name - getMessage
+2024-11-19 16:07:40 INFO  Log4j2ConsoleAndFile:16 - lang: surname - getMessage
+2024-11-19 16:07:40 INFO  Log4j2ConsoleAndFile:16 - lang: phone - getMessage
+2024-11-19 16:07:40 INFO  Log4j2ConsoleAndFile:16 - lang: mail - getMessage
+2024-11-19 16:07:40 INFO  Log4j2ConsoleAndFile:16 - lang: name - getMessage
+2024-11-19 16:07:40 INFO  Log4j2ConsoleAndFile:16 - lang: surname - getMessage
+2024-11-19 16:07:40 INFO  Log4j2ConsoleAndFile:16 - lang: phone - getMessage
+2024-11-19 16:07:40 INFO  Log4j2ConsoleAndFile:16 - lang: mail - getMessage
+2024-11-19 16:07:40 INFO  Log4j2ConsoleAndFile:16 - lang: name - getMessage
+2024-11-19 16:07:40 INFO  Log4j2ConsoleAndFile:16 - lang: surname - getMessage
+2024-11-19 16:07:40 INFO  Log4j2ConsoleAndFile:16 - lang: phone - getMessage
+2024-11-19 16:07:40 INFO  Log4j2ConsoleAndFile:16 - lang: mail - getMessage
+2024-11-19 16:07:40 INFO  Log4j2ConsoleAndFile:16 - lang: name - getMessage
+2024-11-19 16:07:40 INFO  Log4j2ConsoleAndFile:16 - lang: surname - getMessage
+2024-11-19 16:07:40 INFO  Log4j2ConsoleAndFile:16 - lang: phone - getMessage
+2024-11-19 16:07:40 INFO  Log4j2ConsoleAndFile:16 - lang: mail - getMessage
+2024-11-19 16:07:40 INFO  Log4j2ConsoleAndFile:16 - lang: name - getMessage
+2024-11-19 16:07:40 INFO  Log4j2ConsoleAndFile:16 - lang: surname - getMessage
+2024-11-19 16:07:40 INFO  Log4j2ConsoleAndFile:16 - lang: phone - getMessage
+2024-11-19 16:07:40 INFO  Log4j2ConsoleAndFile:16 - lang: mail - getMessage
+2024-11-19 16:07:40 INFO  Log4j2ConsoleAndFile:16 - lang: name - getMessage
+2024-11-19 16:07:40 INFO  Log4j2ConsoleAndFile:16 - lang: surname - getMessage
+2024-11-19 16:07:40 INFO  Log4j2ConsoleAndFile:16 - lang: phone - getMessage
+2024-11-19 16:07:40 INFO  Log4j2ConsoleAndFile:16 - lang: mail - getMessage
+2024-11-19 16:07:40 INFO  Log4j2ConsoleAndFile:16 - lang: name - getMessage
+2024-11-19 16:07:40 INFO  Log4j2ConsoleAndFile:16 - lang: surname - getMessage
+2024-11-19 16:07:40 INFO  Log4j2ConsoleAndFile:16 - lang: phone - getMessage
+2024-11-19 16:07:40 INFO  Log4j2ConsoleAndFile:16 - lang: mail - getMessage
+2024-11-19 16:07:40 INFO  Log4j2ConsoleAndFile:16 - lang: name - getMessage
+2024-11-19 16:07:40 INFO  Log4j2ConsoleAndFile:16 - lang: surname - getMessage
+2024-11-19 16:07:40 INFO  Log4j2ConsoleAndFile:16 - lang: phone - getMessage
+2024-11-19 16:07:40 INFO  Log4j2ConsoleAndFile:16 - lang: mail - getMessage
+2024-11-19 16:07:40 INFO  Log4j2ConsoleAndFile:16 - lang: name - getMessage
+2024-11-19 16:07:40 INFO  Log4j2ConsoleAndFile:16 - lang: surname - getMessage
+2024-11-19 16:07:40 INFO  Log4j2ConsoleAndFile:16 - lang: phone - getMessage
+2024-11-19 16:07:40 INFO  Log4j2ConsoleAndFile:16 - lang: mail - getMessage
+2024-11-19 16:07:40 INFO  Log4j2ConsoleAndFile:16 - get all barber: SELECT * FROM barber LIMIT 10
+2024-11-19 16:07:40 WARN  DeprecateLogging:20 - Вызван метод, помеченный @Deprecated: BarbershopRepository.getAll()

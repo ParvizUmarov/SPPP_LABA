@@ -18,7 +18,9 @@ ext {
 dependencies {
     implementation 'org.springframework.shell:spring-shell-starter'
     implementation 'org.springframework.boot:spring-boot-starter'
-    implementation 'org.springframework.data:spring-data-jdbc'
+    // https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-data-jdbc
+    implementation 'org.springframework.boot:spring-boot-starter-data-jdbc'
+//    implementation 'org.springframework.data:spring-data-jdbc'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testImplementation 'org.springframework.shell:spring-shell-starter-test'
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'

@@ -11,21 +11,6 @@ import javax.sql.DataSource;
 public class DataSourceConfig {
 
     @Bean
-    public SpringConfig config () {
-        return new SpringConfig();
-    }
-
-    @Bean
-    public DataSource dataSource(SpringConfig config) {
-        DriverManagerDataSource dataSource = new DriverManagerDataSource();
-        dataSource.setDriverClassName(config.getDriver());
-        dataSource.setUrl(config.getUrl());
-        dataSource.setUsername(config.getUserName());
-        dataSource.setPassword(config.getPassword());
-        return dataSource;
-    }
-
-    @Bean
     public JdbcTemplate jdbcTemplate(DataSource dataSource) {
         return new JdbcTemplate(dataSource);
     }

@@ -7,10 +7,8 @@ import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
-import java.util.List;
-
 @Repository
-public class BarberRepository {
+public class BarberRepository implements Repo<BarberDto>{
     private final JdbcTemplate jdbcTemplate;
     private final I18nService i18n;
     private final LoggerConsole logger;
@@ -21,7 +19,30 @@ public class BarberRepository {
         this.logger = logger;
     }
 
-    public String getAllBarber() {
+    StringBuilder dtoToString(BarberDto barber) {
+        StringBuilder sb = new StringBuilder();
+        return sb.append(i18n.getMessage("name")).append(" ").append(barber.getName()).append("\n")
+                .append(i18n.getMessage("surname")).append(" ").append(barber.getSurname()).append("\n")
+                .append(i18n.getMessage("phone")).append(" ").append(barber.getPhone()).append("\n")
+                .append(i18n.getMessage("mail")).append(" ").append(barber.getMail());
+    }
+
+
+    @Override
+    public String getByArg(String arg) {
+        String sql = "SELECT * FROM barber WHERE name = ?";
+        var result = jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(BarberDto.class), arg);
+
+        StringBuilder sb = new StringBuilder();
+
+        for (BarberDto barber : result) {
+            sb = dtoToString(barber);
+        }
+        return sb.toString();
+    }
+
+    @Override
+    public String getAll() {
         String sql = "SELECT * FROM barber LIMIT 10";
         var result = jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(BarberDto.class));
 
@@ -32,23 +53,33 @@ public class BarberRepository {
         return sb.toString();
     }
 
-    public String getUserByName(String name) {
-        var result = checkBarberExist(name);
-        StringBuilder sb = new StringBuilder();
-
-        for (BarberDto barber : result) {
-            sb = dtoToString(barber);
+    @Override
+    public boolean delete(String arg) {
+        String sql = "DELETE FROM barber WHERE name = ?";
+        try {
+            jdbcTemplate.update(sql, arg);
+            return true;
+        } catch (Exception e) {
+            logger.logERROR(e.toString());
+            return false;
         }
-        return sb.toString();
     }
 
-    public List<BarberDto> checkBarberExist(String name) {
-        String sql = "SELECT * FROM barber WHERE name = ?";
-        var result = jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(BarberDto.class), name);
-        return result;
+    @Override
+    public boolean update(String newValue, String oldValue) {
+        String sql = "UPDATE barber set name = ? where name = ?";
+        try {
+            jdbcTemplate.update(sql, newValue, oldValue);
+            return true;
+
+        } catch (Exception e) {
+            logger.logERROR(e.toString());
+            return false;
+        }
     }
 
-    public boolean addBarber(BarberDto barberDto) {
+    @Override
+    public boolean add(BarberDto barberDto) {
         String sql = "INSERT INTO barber (name, surname, birthday, phone, mail, work_experience, password, auth_state, salon_id, service_id)" +
                 " VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?) ";
         try {
@@ -69,38 +100,4 @@ public class BarberRepository {
             return false;
         }
     }
-
-    public boolean deleteBarber(String name) {
-        String sql = "DELETE FROM barber WHERE name = ?";
-        try {
-            jdbcTemplate.update(sql, name);
-            return true;
-        } catch (Exception e) {
-            logger.logERROR(e.toString());
-            return false;
-        }
-    }
-
-    public boolean updateBarber(String newName, String oldName) {
-        String sql = "UPDATE barber set name = ? where name = ?";
-        try {
-            jdbcTemplate.update(sql, newName, oldName);
-            return true;
-
-        } catch (Exception e) {
-            logger.logERROR(e.toString());
-            return false;
-        }
-    }
-
-
-    StringBuilder dtoToString(BarberDto barber) {
-        StringBuilder sb = new StringBuilder();
-        return sb.append(i18n.getMessage("name")).append(" ").append(barber.getName()).append("\n")
-                .append(i18n.getMessage("surname")).append(" ").append(barber.getSurname()).append("\n")
-                .append(i18n.getMessage("phone")).append(" ").append(barber.getPhone()).append("\n")
-                .append(i18n.getMessage("mail")).append(" ").append(barber.getMail());
-    }
-
-
 }

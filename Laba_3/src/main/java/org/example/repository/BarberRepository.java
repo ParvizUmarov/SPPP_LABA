@@ -6,36 +6,13 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public class BarberRepository {
+public class BarberRepository implements Repo<String>{
     private final JdbcTemplate jdbcTemplate;
     private final I18nService i18n;
 
     public BarberRepository(JdbcTemplate jdbcTemplate, I18nService i18n) {
         this.jdbcTemplate = jdbcTemplate;
         this.i18n = i18n;
-    }
-
-    public String getAllBarber() {
-        String sql = "SELECT * FROM barber LIMIT 10";
-        var result = jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(BarberDto.class));
-
-        StringBuilder sb = new StringBuilder();
-        for (BarberDto barber : result) {
-            sb.append(dtoToString(barber)).append("\n\n");
-        }
-        return sb.toString();
-    }
-
-    public String getUserByName(String name) {
-        String sql = "SELECT * FROM barber WHERE name = ?";
-        var result = jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(BarberDto.class), name);
-        StringBuilder sb = new StringBuilder();
-
-        for (BarberDto barber : result) {
-            sb = dtoToString(barber);
-        }
-
-        return sb.toString();
     }
 
     StringBuilder dtoToString(BarberDto barber){
@@ -46,4 +23,28 @@ public class BarberRepository {
                 .append(i18n.getMessage("mail")).append(" ").append(barber.getMail());
     }
 
+    @Override
+    public String getAll() {
+        String sql = "SELECT * FROM barber LIMIT 10";
+        var result = jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(BarberDto.class));
+
+        StringBuilder sb = new StringBuilder();
+        for (BarberDto barber : result) {
+            sb.append(dtoToString(barber)).append("\n\n");
+        }
+        return sb.toString();
+    }
+
+    @Override
+    public String getByArg(String arg) {
+        String sql = "SELECT * FROM barber WHERE name = ?";
+        var result = jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(BarberDto.class), arg);
+        StringBuilder sb = new StringBuilder();
+
+        for (BarberDto barber : result) {
+            sb = dtoToString(barber);
+        }
+
+        return sb.toString();
+    }
 }

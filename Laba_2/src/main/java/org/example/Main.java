@@ -33,7 +33,7 @@ public class Main {
                 .sorted(Collections.reverseOrder(Map.Entry.comparingByValue()))
                 .forEach((m) -> {
                     System.out.println("Method: " + m.getKey());
-                    System.out.println("\ttime: " + m.getValue() + " mc ");
+                    System.out.println("\ttime: " + m.getValue() + " nano ");
 
                 });
     }

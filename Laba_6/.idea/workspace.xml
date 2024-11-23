@@ -4,62 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="23edd176-e141-43c1-b152-8c672fc3befc" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/../Laba_3/src/main/java/org/example/config/I18nConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Laba_1/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/../Laba_1/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Laba_1/logs/app.log" beforeDir="false" afterPath="$PROJECT_DIR$/../Laba_1/logs/app.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Laba_1/src/main/java/org/example/bot/BarberShopBot.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Laba_1/src/main/java/org/example/bot/BarberShopBot.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Laba_1/src/main/java/org/example/dto/ChatDto.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Laba_1/src/main/java/org/example/dto/CustomerDto.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Laba_1/src/main/java/org/example/dto/MessageDto.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Laba_1/src/main/java/org/example/dto/OrderDto.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Laba_1/src/main/java/org/example/dto/OrderInfoDto.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Laba_1/src/main/java/org/example/dto/SalonDto.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Laba_1/src/main/java/org/example/dto/ServiceDto.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Laba_1/src/main/java/org/example/dto/StoresDto.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Laba_1/src/main/java/org/example/dto/TokenDto.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Laba_1/src/main/java/org/example/repository/BarbershopRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Laba_1/src/main/java/org/example/repository/BarbershopRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Laba_1/src/test/java/org/example/LanguageServiceImplTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Laba_1/src/test/java/org/example/LanguageServiceImplTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Laba_2/logs/app.log" beforeDir="false" afterPath="$PROJECT_DIR$/../Laba_2/logs/app.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Laba_2/src/main/java/org/example/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Laba_2/src/main/java/org/example/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Laba_2/src/main/java/org/example/bot/BarberShopBot.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Laba_2/src/main/java/org/example/bot/BarberShopBot.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Laba_2/src/main/java/org/example/dto/ChatDto.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Laba_2/src/main/java/org/example/dto/CustomerDto.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Laba_2/src/main/java/org/example/dto/MessageDto.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Laba_2/src/main/java/org/example/dto/OrderDto.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Laba_2/src/main/java/org/example/dto/OrderInfoDto.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Laba_2/src/main/java/org/example/dto/SalonDto.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Laba_2/src/main/java/org/example/dto/ServiceDto.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Laba_2/src/main/java/org/example/dto/StoresDto.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Laba_2/src/main/java/org/example/dto/TokenDto.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Laba_2/src/main/java/org/example/repository/BarbershopRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Laba_2/src/main/java/org/example/repository/BarbershopRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Laba_3/Laba_3.log" beforeDir="false" afterPath="$PROJECT_DIR$/../Laba_3/Laba_3.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Laba_3/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/../Laba_3/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Laba_3/src/main/java/org/example/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Laba_3/src/main/java/org/example/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Laba_3/src/main/java/org/example/command/Command.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Laba_3/src/main/java/org/example/command/Command.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Laba_3/src/main/java/org/example/config/DataSourceConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Laba_3/src/main/java/org/example/config/DataSourceConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Laba_3/src/main/java/org/example/config/SpringConfig.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Laba_3/src/main/java/org/example/repository/BarberRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Laba_3/src/main/java/org/example/repository/BarberRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Laba_3/src/main/java/org/example/service/BarberService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Laba_3/src/main/java/org/example/service/BarberService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Laba_3/src/main/java/org/example/service/CRUDService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Laba_3/src/main/java/org/example/service/CRUDService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Laba_3/src/main/java/org/example/service/I18nServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Laba_3/src/main/java/org/example/service/I18nServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Laba_3/src/main/java/org/example/service/LanguageService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Laba_3/src/main/java/org/example/service/LanguageService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Laba_3/src/main/java/org/example/service/LanguageServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Laba_3/src/main/java/org/example/service/LanguageServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Laba_3/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../Laba_3/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Laba_4/Laba_4.log" beforeDir="false" afterPath="$PROJECT_DIR$/../Laba_4/Laba_4.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Laba_4/src/main/java/org/example/command/Command.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Laba_4/src/main/java/org/example/command/Command.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Laba_4/src/main/java/org/example/repository/BarberRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Laba_4/src/main/java/org/example/repository/BarberRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Laba_4/src/main/java/org/example/service/BarberService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Laba_4/src/main/java/org/example/service/BarberService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Laba_4/src/main/java/org/example/service/I18nServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Laba_4/src/main/java/org/example/service/I18nServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Laba_4/src/main/java/org/example/service/LanguageService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Laba_4/src/main/java/org/example/service/LanguageService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Laba_4/src/main/java/org/example/service/LanguageServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Laba_4/src/main/java/org/example/service/LanguageServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Laba_5/Laba_5.log" beforeDir="false" afterPath="$PROJECT_DIR$/../Laba_5/Laba_5.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Laba_5/src/main/java/org/example/command/Command.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Laba_5/src/main/java/org/example/command/Command.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Laba_5/src/main/java/org/example/service/I18nServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Laba_5/src/main/java/org/example/service/I18nServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Laba_5/src/main/java/org/example/service/LanguageService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Laba_5/src/main/java/org/example/service/LanguageService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Laba_5/src/main/java/org/example/service/LanguageServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Laba_5/src/main/java/org/example/service/LanguageServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../README.md" beforeDir="false" afterPath="$PROJECT_DIR$/../README.md" afterDir="false" />
-    </list>
+    <list default="true" id="23edd176-e141-43c1-b152-8c672fc3befc" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -73,23 +18,23 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 0
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 0
+}</component>
   <component name="ProjectId" id="2p6FhbAyiB9y5gHyivs6fnLsjH3" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Gradle.Laba_6 [:Main.main()].executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "main",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "/home/parviz/Main/Univer/СППП/Лабы/Laba_6/src/main/java"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Gradle.Laba_6 [:Main.main()].executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/parviz/Main/Univer/СППП/Лабы/Laba_6/src/main/java&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/main/java" />

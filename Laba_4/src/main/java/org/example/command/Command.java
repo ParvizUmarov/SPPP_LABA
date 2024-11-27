@@ -17,13 +17,13 @@ public class Command {
         this.languageService = languageService;
     }
 
-    @ShellMethod(key = "lang")
+    @ShellMethod(key = "lang", value = "Получить текущий язык системы")
     public String getCurrentLanguage() {
         return languageService.getCurrentLanguage().toString();
     }
 
-    @ShellMethod(key = "lang -c")
-    public String changeLanguage(@ShellOption String arg) {
+    @ShellMethod(key = "lang -c", value = "Изменить текущий язык")
+    public String changeLanguage(@ShellOption(value = {"-c", "--change"}, help = "Укажите новый язык") String arg) {
         try{
             languageService.setCurrentLanguage(arg);
             return "language changed to " + arg;
@@ -32,27 +32,27 @@ public class Command {
         }
     }
 
-    @ShellMethod(key = "find -a")
-    public String findAll() {
+    @ShellMethod(key = "find -a", value = "Вывод всех парикмахеров")
+    public String findAll(@ShellOption(value = {"-a", "--all"}, help = "Вывести всех парикмахеров") boolean all) {
         return barberService.getAll();
     }
 
-    @ShellMethod(key = "find")
-    public String find(@ShellOption String arg) {
+    @ShellMethod(key = "find", value = "Фильтр парикмахера по имени")
+    public String find(@ShellOption(help = "Фильтр по имени") String arg) {
         return barberService.get(arg);
     }
 
     @ShellMethod(key = "barber -d")
-    public String delete(@ShellOption String arg){
+    public String delete(@ShellOption(value = {"-d", "--delete"}, help = "Удаление парикмахера по имени") String arg){
         return barberService.delete(arg);
     }
 
-    @ShellMethod(key = "barber -u")
-    public String update(@ShellOption String arg){
+    @ShellMethod(key = "barber -u", value = "Обновление")
+    public String update(@ShellOption(value = {"-u", "--update"}, help = "Обновление профиля парикмахера") String arg){
         return barberService.update(arg);
     }
 
-    @ShellMethod(key = "barber ")
+    @ShellMethod(key = "barber", value = "Создание парикмахера")
     public String create(@ShellOption String args){
         return barberService.add(args);
     }

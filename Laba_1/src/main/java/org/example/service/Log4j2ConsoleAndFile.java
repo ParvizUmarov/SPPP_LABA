@@ -4,7 +4,6 @@ import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.example.bot.LoggerConsole;
-import org.springframework.stereotype.Service;
 
 public class Log4j2ConsoleAndFile implements LoggerConsole {
 

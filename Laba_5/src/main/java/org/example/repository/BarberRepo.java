@@ -1,12 +1,12 @@
 package org.example.repository;
 
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.NoResultException;
 import jakarta.persistence.PersistenceContext;
 import org.example.entity.Barber;
 import org.springframework.stereotype.Repository;
 
 import java.util.Collection;
-import java.util.List;
 
 @Repository
 public class BarberRepo implements Repo<Barber> {
@@ -17,7 +17,13 @@ public class BarberRepo implements Repo<Barber> {
 
     @Override
     public Barber getByArg(String arg) {
-        return em.find(Barber.class, arg);
+        try {
+            return em.createQuery("SELECT b FROM Barber b WHERE b.name = :arg", Barber.class)
+                    .setParameter("arg", arg)
+                    .getSingleResult();
+        } catch (NoResultException e) {
+            return null;
+        }
     }
 
     @Override

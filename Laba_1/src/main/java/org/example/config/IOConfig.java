@@ -8,6 +8,7 @@ import java.io.OutputStream;
 
 @Configuration
 public class IOConfig {
+
     @Bean
     InputStream inputStream() {
         return System.in;

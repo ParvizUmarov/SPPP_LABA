@@ -4,7 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="23edd176-e141-43c1-b152-8c672fc3befc" name="Changes" comment="" />
+    <list default="true" id="23edd176-e141-43c1-b152-8c672fc3befc" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/../Laba_1/src/main/java/org/example/config/IOConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Laba_1/src/main/java/org/example/config/IOConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Laba_1/src/main/java/org/example/service/Log4j2ConsoleAndFile.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Laba_1/src/main/java/org/example/service/Log4j2ConsoleAndFile.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />

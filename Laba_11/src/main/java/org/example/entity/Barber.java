@@ -35,6 +35,9 @@ public class Barber {
     @Column(name = "password")
     private String password;
 
+    @Column(name = "created_by")
+    private String createdBy;
+
     @Column(name = "auth_state")
     private Boolean authState;
 

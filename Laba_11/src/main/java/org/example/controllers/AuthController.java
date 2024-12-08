@@ -1,23 +1,24 @@
 package org.example.controllers;
 
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.example.dto.BarberDto;
+import org.example.service.BarberService;
 import org.example.util.JwtUtil;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Collections;
 
 @RestController
 @RequestMapping("/auth")
+@RequiredArgsConstructor
+@Slf4j
 public class AuthController {
 
     private final JwtUtil jwtUtil;
-
-    public AuthController(JwtUtil jwtUtil) {
-        this.jwtUtil = jwtUtil;
-    }
 
     @PostMapping("/login")
     public ResponseEntity<?> login(@RequestParam String username, @RequestParam String role) {

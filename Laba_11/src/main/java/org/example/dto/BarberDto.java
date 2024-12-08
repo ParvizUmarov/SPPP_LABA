@@ -20,6 +20,7 @@ public class BarberDto {
     private Integer serviceId;
     private String serviceName;
     private Integer servicePrice;
+    private String createdBy;
 
 
     @Override

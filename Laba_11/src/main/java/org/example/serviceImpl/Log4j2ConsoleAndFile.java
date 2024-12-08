@@ -1,8 +1,9 @@
-package org.example.service;
+package org.example.serviceImpl;
 
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.example.service.LoggerConsole;
 import org.springframework.stereotype.Service;
 
 @Service

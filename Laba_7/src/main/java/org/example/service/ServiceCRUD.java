@@ -1,5 +1,6 @@
 package org.example.service;
 
+import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -33,7 +34,7 @@ public class ServiceCRUD implements CRUDService<ServiceDto> {
     public ServiceDto getById(int id) {
         var result = repository.findById(id);
         if(result == null){
-            throw new ResourceNotFoundException(i18n.getMessage("no-info"));
+            throw new EntityNotFoundException(i18n.getMessage("no-info"));
         }
         return mapToDto(result.get());
     }
@@ -45,7 +46,7 @@ public class ServiceCRUD implements CRUDService<ServiceDto> {
             return new ResponseDto(i18n.getMessage("service-create"));
         }catch (Exception e){
             log.error(e.getMessage());
-            return new ResponseDto(i18n.getMessage("error"));
+            throw new EntityNotFoundException(i18n.getMessage("error"));
         }
     }
 
@@ -72,7 +73,7 @@ public class ServiceCRUD implements CRUDService<ServiceDto> {
             return new ResponseDto(i18n.getMessage("service-delete"));
         } catch (Exception e) {
             log.info(e.toString());
-            return new ResponseDto("cannot-delete" + " " + id);
+            throw new EntityNotFoundException("cannot-delete" + " " + id);
         }
 
     }
@@ -80,13 +81,6 @@ public class ServiceCRUD implements CRUDService<ServiceDto> {
     @Override
     public ServiceDto getByMail(String mail) {
         return null;
-    }
-
-    StringBuilder entityToString(Services services) {
-        StringBuilder sb = new StringBuilder();
-        return sb.append("id: ").append(" ").append(services.getId()).append("\n")
-                .append(i18n.getMessage("service-name")).append(services.getName()).append("\n")
-                .append(i18n.getMessage("service-price")).append(services.getPrice());
     }
 
     public static Services mapToEntity(ServiceDto serviceDto){

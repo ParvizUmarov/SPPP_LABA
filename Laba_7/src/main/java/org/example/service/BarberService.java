@@ -5,6 +5,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.example.dto.BarberDto;
 import org.example.dto.ResponseDto;
 import org.example.entity.Barber;
+import org.example.exception.RestException;
 import org.example.repository.BarberRepository;
 import org.example.restExceptionHandler.ResourceNotFoundException;
 import org.springframework.stereotype.Service;
@@ -40,7 +41,7 @@ public class BarberService implements CRUDService<BarberDto> {
             }
         } catch (Exception e) {
             log.error("barber service error: " + e.getMessage());
-            throw new ResourceNotFoundException(i18nService.getMessage("no-info"));
+            throw new RestException(i18nService.getMessage("no-info"));
         }
     }
 
@@ -50,7 +51,33 @@ public class BarberService implements CRUDService<BarberDto> {
             repository.save(mapToEntity(data));
             return new ResponseDto(i18nService.getMessage("succesfully-create"));
         } catch (Exception e) {
-            return new ResponseDto(i18nService.getMessage("error"));
+            throw new RestException(i18nService.getMessage("error"));
+        }
+    }
+
+    @Override
+    public ResponseDto delete(int id) {
+        try {
+            repository.deleteById(id);
+            return new ResponseDto(i18nService.getMessage("succesfully-delete"));
+        } catch (Exception e) {
+            ioService.println(e.toString());
+            throw new RestException(i18nService.getMessage("cannot-delete") + " " + id);
+        }
+    }
+
+    @Override
+    public BarberDto getByMail(String mail) {
+        try {
+            var result = repository.findByMail(mail);
+            if (result == null) {
+                throw new ResourceNotFoundException(i18nService.getMessage("no-info"));
+            } else {
+                return mapToDto(result);
+            }
+        } catch (Exception e) {
+            log.error("barber service error: " + e.getMessage());
+            throw new RestException(i18nService.getMessage("no-info"));
         }
     }
 
@@ -73,32 +100,6 @@ public class BarberService implements CRUDService<BarberDto> {
             return new ResponseDto(i18nService.getMessage("cannot-changed"));
         }
 
-    }
-
-    @Override
-    public ResponseDto delete(int id) {
-        try {
-            repository.deleteById(id);
-            return new ResponseDto(i18nService.getMessage("succesfully-delete"));
-        } catch (Exception e) {
-            ioService.println(e.toString());
-            return new ResponseDto(i18nService.getMessage("cannot-delete") + " " + id);
-        }
-    }
-
-    @Override
-    public BarberDto getByMail(String mail) {
-        try {
-            var result = repository.findByMail(mail);
-            if (result == null) {
-                throw new ResourceNotFoundException(i18nService.getMessage("no-info"));
-            } else {
-                return mapToDto(result);
-            }
-        } catch (Exception e) {
-            log.error("barber service error: " + e.getMessage());
-            throw new ResourceNotFoundException(i18nService.getMessage("no-info"));
-        }
     }
 
     private static Barber mapToEntity(BarberDto barberDto) {
@@ -127,14 +128,6 @@ public class BarberService implements CRUDService<BarberDto> {
         barberDto.setPassword(barber.getPassword());
         barberDto.setAuthState(barber.getAuthState());
         return barberDto;
-    }
-
-    StringBuilder entityToString(Barber barber) {
-        StringBuilder sb = new StringBuilder();
-        return sb.append(i18nService.getMessage("name")).append(" ").append(barber.getName()).append("\n")
-                .append(i18nService.getMessage("surname")).append(" ").append(barber.getSurname()).append("\n")
-                .append(i18nService.getMessage("phone")).append(" ").append(barber.getPhone()).append("\n")
-                .append(i18nService.getMessage("mail")).append(" ").append(barber.getMail());
     }
 
 }

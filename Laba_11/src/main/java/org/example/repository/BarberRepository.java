@@ -10,17 +10,17 @@ import java.util.Collection;
 
 public interface BarberRepository extends JpaRepository<Barber, Integer> {
 
-    @Query("SELECT b FROM Barber b WHERE b.mail = ?1")
+    @Query("SELECT b FROM Barber b WHERE b.mail = :mail")
     Barber findByMail(String mail);
 
     @Transactional
     @Modifying
-    @Query("DELETE FROM Barber b WHERE b.name = ?1")
+    @Query("DELETE FROM Barber b WHERE b.name = :name")
     int deleteBarber(String name);
 
     @Transactional
     @Modifying
-    @Query("UPDATE Barber b SET b.name = ?1 WHERE b.name = ?2")
+    @Query("UPDATE Barber b SET b.name = :newName WHERE b.name = :oldName")
     void updateBarber(String newName, String oldName);
 
     @Query(value = "SELECT * FROM barber LIMIT 10", nativeQuery = true)

@@ -3,14 +3,11 @@ package org.example.controllers;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.example.dto.BarberDto;
+import org.example.dto.ResponseDto;
+import org.example.dto.UserDto;
 import org.example.service.BarberService;
-import org.example.util.JwtUtil;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.Collections;
 
 @RestController
 @RequestMapping("/auth")
@@ -18,12 +15,19 @@ import java.util.Collections;
 @Slf4j
 public class AuthController {
 
-    private final JwtUtil jwtUtil;
+    private final BarberService service;
 
     @PostMapping("/login")
-    public ResponseEntity<?> login(@RequestParam String username, @RequestParam String role) {
-        String token = jwtUtil.generateToken(username, role);
-        return ResponseEntity.ok(Collections.singletonMap("token", token));
+    public ResponseEntity<ResponseDto> login(@RequestBody UserDto userDto) {
+        var response = service.login(userDto);
+        return ResponseEntity.ok(response);
+    }
+
+    @PostMapping("/register")
+    public ResponseEntity<ResponseDto> register(@RequestBody BarberDto barberDto) {
+        log.info("created_by: " + barberDto.getCreatedBy());
+        var response = service.register(barberDto);
+        return ResponseEntity.ok(response);
     }
 
 }

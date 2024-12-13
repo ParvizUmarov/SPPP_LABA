@@ -1,8 +1,10 @@
 package org.example.dto;
 
 import lombok.Data;
+import lombok.ToString;
 
 @Data
+@ToString
 public class BarberDto {
     private Integer id;
     private String name;
@@ -22,25 +24,4 @@ public class BarberDto {
     private Integer servicePrice;
     private String createdBy;
 
-
-    @Override
-    public String toString() {
-        return "Barber info:" +
-                "\n id=" + id +
-                "\n name='" + name + '\'' +
-                "\n surname='" + surname + '\'' +
-                "\n birthday='" + birthday + '\'' +
-                "\n phone='" + phone + '\'' +
-                "\n mail='" + mail + '\'' +
-                "\n password='" + password + '\'' +
-                "\n authState=" + authState +
-                "\n workExperience=" + workExperience +
-                "\n token='" + token + '\'' +
-                "\n salonId=" + salonId +
-                "\n salonAddress='" + salonAddress + '\'' +
-                "\n salonImages='" + salonImages + '\'' +
-                "\n serviceId=" + serviceId +
-                "\n serviceName='" + serviceName + '\'' +
-                "\n servicePrice=" + servicePrice;
-    }
 }

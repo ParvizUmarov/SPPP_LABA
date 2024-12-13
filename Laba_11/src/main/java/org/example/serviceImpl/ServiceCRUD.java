@@ -6,6 +6,7 @@ import org.apache.commons.logging.LogFactory;
 import org.example.dto.ResponseDto;
 import org.example.dto.ServiceDto;
 import org.example.entity.Services;
+import org.example.exception.RestException;
 import org.example.repository.ServiceRepository;
 import org.example.exception.ResourceNotFoundException;
 import org.example.service.CRUDService;
@@ -34,21 +35,18 @@ public class ServiceCRUD implements CRUDService<ServiceDto> {
 
     @Override
     public ServiceDto getById(int id) {
-        var result = repository.findById(id);
-        if(result == null){
-            throw new ResourceNotFoundException(i18n.getMessage("no-info"));
-        }
-        return mapToDto(result.get());
+        var result = repository.findById(id).orElseThrow(() -> new ResourceNotFoundException(i18n.getMessage("no-info")));
+        return mapToDto(result);
     }
 
     @Override
     public ResponseDto add(ServiceDto data) {
-        try{
+        try {
             repository.save(mapToEntity(data));
             return new ResponseDto(i18n.getMessage("service-create"));
-        }catch (Exception e){
+        } catch (Exception e) {
             log.error(e.getMessage());
-            return new ResponseDto(i18n.getMessage("error"));
+            throw new RestException(i18n.getMessage("error"));
         }
     }
 
@@ -75,7 +73,7 @@ public class ServiceCRUD implements CRUDService<ServiceDto> {
             return new ResponseDto(i18n.getMessage("service-delete"));
         } catch (Exception e) {
             log.info(e.toString());
-            return new ResponseDto("cannot-delete" + " " + id);
+            throw new RestException("cannot-delete" + " " + id);
         }
 
     }
@@ -85,14 +83,7 @@ public class ServiceCRUD implements CRUDService<ServiceDto> {
         return null;
     }
 
-    StringBuilder entityToString(Services services) {
-        StringBuilder sb = new StringBuilder();
-        return sb.append("id: ").append(" ").append(services.getId()).append("\n")
-                .append(i18n.getMessage("service-name")).append(services.getName()).append("\n")
-                .append(i18n.getMessage("service-price")).append(services.getPrice());
-    }
-
-    public static Services mapToEntity(ServiceDto serviceDto){
+    public static Services mapToEntity(ServiceDto serviceDto) {
         Services services = new Services();
         services.setId(serviceDto.getId());
         services.setName(serviceDto.getName());
@@ -100,7 +91,7 @@ public class ServiceCRUD implements CRUDService<ServiceDto> {
         return services;
     }
 
-    public static ServiceDto mapToDto(Services services){
+    public static ServiceDto mapToDto(Services services) {
         ServiceDto serviceDto = new ServiceDto();
         serviceDto.setId(services.getId());
         serviceDto.setName(services.getName());

@@ -29,4 +29,8 @@ public class Salon {
     @Column(name = "latitude")
     private String latitude;
 
+    @ManyToOne
+    @JoinColumn(name = "owner_id")
+    private Barber barber;
+
 }

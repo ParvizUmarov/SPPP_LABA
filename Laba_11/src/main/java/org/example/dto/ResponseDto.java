@@ -4,5 +4,5 @@ import lombok.Data;
 
 @Data
 public class ResponseDto {
-    private final String text;
+    private final String message;
 }

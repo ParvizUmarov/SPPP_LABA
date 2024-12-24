@@ -6,48 +6,61 @@ import org.example.entity.Services;
 import org.springframework.stereotype.Repository;
 
 import java.util.Collection;
-@Repository
-public class ServiceRepo implements Repo<Services> {
+import java.util.List;
 
-    @PersistenceContext
-    private EntityManager em;
-    private final static int QUERY_LIMIT = 10;
+public interface ServiceRepo {
 
-    @Override
-    public Services getByArg(String arg) {
-        return em.find(Services.class, arg);
-    }
+    Services getByArg(String arg);
+    boolean add(Services object);
+    boolean delete(String name);
+    boolean update(Object newValue, Object oldValue);
+    List<Services> getAll();
 
-    @Override
-    public boolean add(Services object) {
-        em.getTransaction().begin();
-        em.persist(object);
-        em.getTransaction().commit();
-        return true;
-    }
+    @Repository
+    class Base implements ServiceRepo {
 
-    @Override
-    public boolean delete(String name) {
-       var service = getByArg(name);
-       em.remove(service);
-       return true;
-    }
 
-    @Override
-    public boolean update(Object newValue, Object oldValue) {
-        var service = getByArg(oldValue.toString());
-        if (service != null) {
-            service.setName(newValue.toString());
-            em.merge(service);
+        @PersistenceContext
+        private EntityManager em;
+        private final static int QUERY_LIMIT = 10;
+
+        @Override
+        public Services getByArg(String arg) {
+            return em.find(Services.class, arg);
+        }
+
+        @Override
+        public boolean add(Services object) {
+            em.getTransaction().begin();
+            em.persist(object);
+            em.getTransaction().commit();
             return true;
         }
-        return false;
+
+        @Override
+        public boolean delete(String name) {
+            var service = getByArg(name);
+            em.remove(service);
+            return true;
+        }
+
+        @Override
+        public boolean update(Object newValue, Object oldValue) {
+            var service = getByArg(oldValue.toString());
+            if (service != null) {
+                service.setName(newValue.toString());
+                em.merge(service);
+                return true;
+            }
+            return false;
+        }
+
+        @Override
+        public List<Services> getAll() {
+            var query = em.createNamedQuery("getallservice", Services.class);
+            query.setMaxResults(QUERY_LIMIT);
+            return query.getResultList();
+        }
     }
 
-    @Override
-    public Collection<Services> getAll() {
-        var query = em.createNamedQuery("getallservice", Services.class);
-        query.setMaxResults(QUERY_LIMIT);
-        return query.getResultList();
-    }
 }

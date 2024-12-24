@@ -18,7 +18,7 @@ public interface ServiceRepository extends JpaRepository<Services, Integer> {
 
     @Transactional
     @Modifying
-    @Query("UPDATE Services s SET s.price = ?1 WHERE s.name = ?2")
+    @Query("UPDATE Services s SET s.price = :price WHERE s.name = :name")
     int updateService(int price, String name);
 
 }

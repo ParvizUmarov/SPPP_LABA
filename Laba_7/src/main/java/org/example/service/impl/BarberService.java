@@ -1,4 +1,4 @@
-package org.example.service;
+package org.example.service.impl;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -8,9 +8,11 @@ import org.example.entity.Barber;
 import org.example.exception.RestException;
 import org.example.repository.BarberRepository;
 import org.example.restExceptionHandler.ResourceNotFoundException;
+import org.example.service.CRUDService;
+import org.example.service.I18nService;
+import org.example.service.IOService;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.Collection;
 
 @Slf4j

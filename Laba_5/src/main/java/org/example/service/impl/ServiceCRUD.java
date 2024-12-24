@@ -1,15 +1,18 @@
-package org.example.service;
+package org.example.service.impl;
 
 import lombok.RequiredArgsConstructor;
 import org.example.entity.Services;
-import org.example.repository.Repo;
+import org.example.repository.ServiceRepo;
+import org.example.service.CRUDService;
+import org.example.service.I18nService;
+import org.example.service.IOService;
 import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
 public class ServiceCRUD implements CRUDService<String> {
 
-    private final Repo<Services> repository;
+    private final ServiceRepo repository;
     private final I18nService i18n;
     private final IOService io;
 

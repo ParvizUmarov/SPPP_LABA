@@ -1,9 +1,12 @@
-package org.example.service;
+package org.example.service.impl;
 
 import lombok.RequiredArgsConstructor;
 import org.example.dto.BarberDto;
 import org.example.entity.Barber;
-import org.example.repository.Repo;
+import org.example.repository.BarberRepo;
+import org.example.service.CRUDService;
+import org.example.service.I18nService;
+import org.example.service.IOService;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -12,7 +15,7 @@ public class BarberService implements CRUDService<String> {
 
     private final IOService ioService;
     private final I18nService i18nService;
-    private final Repo<Barber> repository;
+    private final BarberRepo repository;
 
     @Override
     public String getAll() {
@@ -68,7 +71,7 @@ public class BarberService implements CRUDService<String> {
             return i18nService.getMessage("succesfully-create");
         }catch (Exception e){
             ioService.println(e.toString());
-            return i18nService.getMessage("cannot-delete") + " " + data;
+            return i18nService.getMessage("cannot-delete") + data;
         }
     }
 

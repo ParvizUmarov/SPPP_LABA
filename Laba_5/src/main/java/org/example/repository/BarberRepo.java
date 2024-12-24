@@ -1,19 +1,23 @@
 package org.example.repository;
 
 import jakarta.persistence.EntityManager;
-import jakarta.persistence.NoResultException;
 import jakarta.persistence.PersistenceContext;
 import org.example.entity.Barber;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 public interface BarberRepo {
 
     Barber getByArg(String arg);
-    boolean add(Barber object);
-    boolean delete(String name);
-    boolean update(Object newValue, Object oldValue);
+
+    void add(Barber object);
+
+    void delete(String name);
+
+    void update(Object newValue, Object oldValue);
+
     List<Barber> getAll();
 
     @Repository
@@ -26,38 +30,47 @@ public interface BarberRepo {
         @Override
         public Barber getByArg(String arg) {
             try {
-                return em.createQuery("SELECT b FROM Barber b WHERE b.name = :arg", Barber.class)
-                        .setParameter("arg", arg)
-                        .getSingleResult();
-            } catch (NoResultException e) {
+                var resultFromQuery = em.createQuery("SELECT b FROM Barber b WHERE b.name = :arg", Barber.class)
+                        .setParameter("arg", arg);
+
+                if (resultFromQuery == null) {
+                    throw new IllegalArgumentException("barber not found");
+                }
+
+                return resultFromQuery.getSingleResult();
+            } catch (Exception e) {
                 return null;
             }
         }
 
+        @Transactional
         @Override
-        public boolean add(Barber object) {
-            em.getTransaction().begin();
+        public void add(Barber object) {
+            var barber = getByArg(object.getName());
+
+            if (barber != null) {
+                throw new IllegalArgumentException("Barber with name " + object.getName() + " is already exist");
+            }
             em.persist(object);
-            em.getTransaction().commit();
-            return true;
         }
 
+        @Transactional
         @Override
-        public boolean delete(String name) {
-            var barber = getByArg(name);
-            em.remove(barber);
-            return true;
+        public void delete(String name) {
+            var barberList = getByArg(name);
+            em.remove(barberList);
         }
 
+        @Transactional
         @Override
-        public boolean update(Object newValue, Object oldValue) {
+        public void update(Object newValue, Object oldValue) {
             var barber = getByArg(oldValue.toString());
             if (barber != null) {
                 barber.setName(newValue.toString());
                 em.merge(barber);
-                return true;
+            } else {
+                throw new IllegalArgumentException("Barber doest exist");
             }
-            return false;
         }
 
         @Override

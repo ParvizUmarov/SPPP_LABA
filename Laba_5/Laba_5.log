@@ -58,3 +58,61 @@
 1735016904368:barber -u Иван
 1735016934372:find Иван
 1735016968376:barber -d Иван
+1735037190041:find Иван
+1735037211032:find -a
+1735037720784:find Иван
+1735037742786:barber parviz
+1735037918570:barber parviz umarov parviz@gmail.com
+1735038944441:find parviz
+1735038965443:find Иван
+1735039299499:delete parviz
+1735039306500:barber -d parviz
+1735055219257:find parviz
+1735061342085:find barber
+1735061346082:find parviz
+1735061358087:barber parviz umarov parviz@gmail.com
+1735061487626:find parviz
+1735061504626:barber parviz umarov parviz@gmail.com
+1735061759255:lang
+1735061768254:service -a
+1735061787261:service Стрижка для детей
+1735061811261:service "Стрижка для детей"
+1735061823261:service Прическа
+1735062194675:service qwe
+1735062336688:service -a
+1735062368693:service -add Мужская-стрижка
+1735062794506:service -add Прическа
+1735062805502:service -a
+1735062840743:service -add Прическа
+1735062866739:service -add Укладка-волос
+1735063219716:barber parviz umarov parviz@gmail.com
+1735063308035:barber -u parviz
+1735063910492:find Parviz
+1735063928493:barber -d Parviz
+1735063932495:find Parviz
+1735063937495:exit
+1735063947188:lang
+1735063962190:barber parviz umarov parviz@gmail.com
+1735063972189:find parviz
+1735063979190:barber -u parviz
+1735063986192:find Parviz
+1735063990192:barber -d Parviz
+1735063994192:find Parviz
+1735063997193:find -a
+1735064047355:service -a
+1735064059359:service -add Укладка-волос
+1735064080359:service -add Стрижка-под-ноль
+1735064100361:service  Стрижка-под-ноль
+1735064123363:service -u Стрижка-под-ноль
+1735064184710:service -add Бритье
+1735064200706:service Бритье
+1735064211706:service -u Бритье
+1735064224708:service Бритье
+1735064395971:service -d Бритье
+1735064420969:service -a
+1735064474127:service -add Бритье
+1735064488125:service Бритье
+1735064501127:service -u Бритье
+1735064514128:service Бритье
+1735064523129:service -d Бритье
+1735064532131:service Бритье

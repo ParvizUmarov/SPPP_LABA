@@ -4,16 +4,20 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import org.example.entity.Services;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Collection;
 import java.util.List;
 
 public interface ServiceRepo {
 
     Services getByArg(String arg);
-    boolean add(Services object);
-    boolean delete(String name);
-    boolean update(Object newValue, Object oldValue);
+
+    void add(Services object);
+
+    void delete(String name);
+
+    void update(int newPrice, String name);
+
     List<Services> getAll();
 
     @Repository
@@ -26,33 +30,49 @@ public interface ServiceRepo {
 
         @Override
         public Services getByArg(String arg) {
-            return em.find(Services.class, arg);
-        }
-
-        @Override
-        public boolean add(Services object) {
-            em.getTransaction().begin();
-            em.persist(object);
-            em.getTransaction().commit();
-            return true;
-        }
-
-        @Override
-        public boolean delete(String name) {
-            var service = getByArg(name);
-            em.remove(service);
-            return true;
-        }
-
-        @Override
-        public boolean update(Object newValue, Object oldValue) {
-            var service = getByArg(oldValue.toString());
-            if (service != null) {
-                service.setName(newValue.toString());
-                em.merge(service);
-                return true;
+            try {
+                var resultFromQuery = em.createQuery("SELECT s FROM Services s WHERE s.name = :arg", Services.class)
+                        .setParameter("arg", arg);
+                return resultFromQuery.getSingleResult();
+            } catch (Exception e) {
+                return null;
             }
-            return false;
+        }
+
+        @Transactional
+        @Override
+        public void add(Services object) {
+            var services = getByArg(object.getName());
+
+            if (services != null) {
+                throw new IllegalArgumentException("Service with name " + object.getName() + " is already exist");
+            }
+            em.persist(object);
+        }
+
+        @Transactional
+        @Override
+        public void delete(String name) {
+            var service = getByArg(name);
+
+            if (service == null) {
+                throw new IllegalArgumentException("Service doesn't exist");
+            }
+
+            em.remove(service);
+        }
+
+        @Transactional
+        @Override
+        public void update(int newPrice, String name) {
+            var service = getByArg(name);
+            if (service != null) {
+                service.setPrice(newPrice);
+                em.merge(service);
+            } else {
+                throw new IllegalArgumentException("service doesn't exist");
+            }
+
         }
 
         @Override
@@ -61,6 +81,7 @@ public interface ServiceRepo {
             query.setMaxResults(QUERY_LIMIT);
             return query.getResultList();
         }
+
     }
 
 }

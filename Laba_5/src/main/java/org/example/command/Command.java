@@ -1,9 +1,9 @@
 package org.example.command;
 
 import lombok.RequiredArgsConstructor;
-import org.example.service.impl.BarberService;
+import org.example.service.BarberService;
 import org.example.service.LanguageService;
-import org.example.service.impl.ServiceCRUD;
+import org.example.service.ServiceCRUD;
 import org.springframework.shell.standard.ShellComponent;
 import org.springframework.shell.standard.ShellMethod;
 import org.springframework.shell.standard.ShellOption;
@@ -50,8 +50,8 @@ public class Command {
     }
 
     @ShellMethod(key = "barber ", value = "Создание парикмахера")
-    public String create(@ShellOption String args) {
-        return barberService.add(args);
+    public String create(@ShellOption String name, @ShellOption String surname, @ShellOption String email) {
+        return barberService.add(name, surname, email);
     }
 
     @ShellMethod(key = "service -a", value = "Для получение всех сервисов")

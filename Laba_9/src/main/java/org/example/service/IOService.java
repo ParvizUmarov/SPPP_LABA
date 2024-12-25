@@ -1,4 +1,4 @@
-package org.example.serviceInterface;
+package org.example.service;
 
 
 public interface IOService {

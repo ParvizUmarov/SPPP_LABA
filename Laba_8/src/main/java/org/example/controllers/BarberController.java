@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.example.dto.BarberDto;
 import org.example.dto.ResponseDto;
+import org.example.service.BarberService;
 import org.example.service.CRUDService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,7 +21,7 @@ import java.util.Collections;
 @RequiredArgsConstructor
 public class BarberController {
 
-    private final CRUDService<BarberDto> service;
+    private final BarberService service;
 
     @GetMapping
     public Flux<BarberDto> getAll(){
@@ -41,8 +42,8 @@ public class BarberController {
                 .doOnError(e -> log.error("Error finding barber by mail: {}", e.getMessage()));
     }
 
-    @PostMapping("/register")
-    public Mono<ResponseDto> register(@RequestBody BarberDto barberDto) {
+    @PostMapping("/add")
+    public Mono<ResponseDto> add(@RequestBody BarberDto barberDto) {
         log.info("Registering new barber");
         return service.add(barberDto)
                 .doOnError(e -> log.error("Error registering barber: {}", e.getMessage()));

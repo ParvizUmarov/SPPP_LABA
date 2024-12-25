@@ -1,4 +1,4 @@
-package org.example.serviceImpl;
+package org.example.service.impl;
 
 import org.example.service.LanguageService;
 import org.springframework.context.i18n.LocaleContextHolder;

@@ -1,4 +1,4 @@
-package org.example.serviceImpl;
+package org.example.service.impl;
 
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;

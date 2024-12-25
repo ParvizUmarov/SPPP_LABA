@@ -1,6 +1,6 @@
-package org.example.service;
+package org.example.service.impl;
 
-import org.example.serviceInterface.LanguageService;
+import org.example.service.LanguageService;
 import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.stereotype.Service;
 

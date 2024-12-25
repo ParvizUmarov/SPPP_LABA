@@ -1,8 +1,8 @@
-package org.example.service;
+package org.example.service.impl;
 
 import lombok.RequiredArgsConstructor;
-import org.example.serviceInterface.I18nService;
-import org.example.serviceInterface.LanguageService;
+import org.example.service.I18nService;
+import org.example.service.LanguageService;
 import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Service;
 

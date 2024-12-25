@@ -3,7 +3,7 @@ package org.example.controllers;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.example.dto.BarberDto;
-import org.example.service.CRUDService;
+import org.example.service.BarberService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -18,7 +18,7 @@ import java.util.Collections;
 @RequiredArgsConstructor
 public class BarberController {
 
-    private final CRUDService<BarberDto> service;
+    private final BarberService service;
 
     @GetMapping
     @PreAuthorize("hasRole('READER') or hasRole('EDITOR')")
@@ -56,11 +56,11 @@ public class BarberController {
         }
     }
 
-    @PostMapping("/register")
+    @PostMapping("/add")
     @PreAuthorize("hasRole('EDITOR')")
     public ResponseEntity<?> register(@RequestBody BarberDto barberDto){
         try {
-             log.info("creare barber");
+             log.info("create barber");
              var result = service.add(barberDto);
              return ResponseEntity.ok(result);
         }catch (Exception e){

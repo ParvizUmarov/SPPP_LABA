@@ -1,6 +1,6 @@
-package org.example.service;
+package org.example.service.impl;
 
-import org.example.serviceInterface.IOService;
+import org.example.service.IOService;
 import org.springframework.stereotype.Service;
 
 import java.io.PrintWriter;

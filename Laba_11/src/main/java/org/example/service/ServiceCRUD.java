@@ -2,29 +2,22 @@ package org.example.service;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.example.dto.ResponseDto;
 import org.example.dto.ServiceDto;
-import org.example.entity.Services;
+import org.example.exception.ResourceNotFoundException;
+import org.example.exception.RestException;
 import org.example.mapper.ServiceMapper;
 import org.example.repository.ServiceRepository;
-import org.example.restExceptionHandler.ResourceNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;
 
-
 public interface ServiceCRUD {
 
     Collection<ServiceDto> getAll();
-
     ServiceDto getById(int id);
-
     ResponseDto add(ServiceDto data);
-
     ResponseDto update(ServiceDto data);
-
     ResponseDto delete(int id);
 
     @Slf4j
@@ -46,11 +39,8 @@ public interface ServiceCRUD {
 
         @Override
         public ServiceDto getById(int id) {
-            var result = repository.findById(id);
-            if (result == null) {
-                throw new ResourceNotFoundException(i18n.getMessage("no-info"));
-            }
-            return mapper.mapToDto(result.get());
+            var result = repository.findById(id).orElseThrow(() -> new ResourceNotFoundException(i18n.getMessage("no-info")));
+            return mapper.mapToDto(result);
         }
 
         @Override
@@ -60,7 +50,7 @@ public interface ServiceCRUD {
                 return new ResponseDto(i18n.getMessage("service-create"));
             } catch (Exception e) {
                 log.error(e.getMessage());
-                return new ResponseDto(i18n.getMessage("error"));
+                throw new RestException(i18n.getMessage("error"));
             }
         }
 
@@ -87,9 +77,10 @@ public interface ServiceCRUD {
                 return new ResponseDto(i18n.getMessage("service-delete"));
             } catch (Exception e) {
                 log.info(e.toString());
-                return new ResponseDto("cannot-delete" + " " + id);
+                throw new RestException("cannot-delete" + " " + id);
             }
 
         }
     }
+
 }

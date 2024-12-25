@@ -1,4 +1,4 @@
-package org.example.serviceInterface;
+package org.example.service;
 
 public interface LoggerConsole {
     void logINFO(String message);

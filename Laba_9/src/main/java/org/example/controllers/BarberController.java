@@ -4,11 +4,9 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.example.aop.CheckAuth;
 import org.example.dto.BarberDto;
-import org.example.dto.ResponseDto;
 import org.example.dto.TokenDto;
 import org.example.entity.Token;
-import org.example.serviceInterface.BarberService;
-import org.example.serviceInterface.CRUDService;
+import org.example.service.BarberService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -20,7 +18,7 @@ import java.util.Collection;
 @RequiredArgsConstructor
 public class BarberController {
 
-    private final BarberService<BarberDto> service;
+    private final BarberService service;
 
     @CheckAuth
     @GetMapping
@@ -50,7 +48,8 @@ public class BarberController {
 
     @PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody Token body){
-        return ResponseEntity.ok(service.login(body));
+        var token = service.login(body);
+        return ResponseEntity.ok(token);
     }
 
     @CheckAuth

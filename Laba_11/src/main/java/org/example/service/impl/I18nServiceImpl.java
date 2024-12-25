@@ -1,4 +1,4 @@
-package org.example.serviceImpl;
+package org.example.service.impl;
 
 import lombok.RequiredArgsConstructor;
 import org.example.service.I18nService;

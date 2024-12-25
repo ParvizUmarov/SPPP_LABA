@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
 @ControllerAdvice
-public class RestExceptionHandler {
+public class CustomExceptionHandler {
 
     @ExceptionHandler(RestException.class)
     public ResponseEntity<String> handlerEntityNotFoundException(RestException ex){

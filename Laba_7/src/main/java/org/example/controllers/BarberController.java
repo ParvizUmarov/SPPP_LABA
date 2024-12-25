@@ -9,7 +9,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.example.dto.BarberDto;
 import org.example.dto.ResponseDto;
-import org.example.service.CRUDService;
+import org.example.service.BarberService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.util.Collection;
@@ -20,7 +20,7 @@ import java.util.Collection;
 @RequiredArgsConstructor
 public class BarberController {
 
-    private final CRUDService<BarberDto> service;
+    private final BarberService service;
 
     @GetMapping
     public Collection<BarberDto> getAll() {
@@ -66,7 +66,7 @@ public class BarberController {
     }
 
     @Operation(
-            summary = "Register barber",
+            summary = "Add barber",
             description = "Register barber to db. Save barber info to db"
     )
     @ApiResponses(
@@ -77,9 +77,9 @@ public class BarberController {
                     }
             )
     )
-    @PostMapping("/register")
-    public ResponseEntity<ResponseDto> register(@RequestBody BarberDto barberDto) {
-        log.info("creare barber");
+    @PostMapping("/add")
+    public ResponseEntity<ResponseDto> add(@RequestBody BarberDto barberDto) {
+        log.info("create barber: {}", barberDto);
         var result = service.add(barberDto);
         return ResponseEntity.ok(result);
     }
